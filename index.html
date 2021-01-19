@@ -1,1 +1,37 @@
-<h1>Hello!</h1>
+<div>
+  <h1 id="status"></h1>
+  <input type="button" value="Call" id="button-call" />
+</div>
+
+<!-- Custom JavaScript -->
+<script type="text/javascript">
+  const RESOURCE_POOL_ID = 'A1B2C3D4E5';
+
+  // Set button event listener
+  const buttonCall = document.querySelector('#button-call');
+  buttonCall.addEventListener('click', () => {
+    // Check that this is being displayed on Connect's Webview
+    if (typeof connect !== "undefined") {
+      connect.call(RESOURCE_POOL_ID);
+    } else {
+      alert("This will only work on Connect's Webview!");
+    }
+  });
+
+  // Status callback
+  function onStatusChange(availableMembers) {
+    let status = document.querySelector('#status');
+    if (availableMembers > 0) {
+      status.innerHTML = `Available (${availableMembers})`;
+    } else {
+      status.innerHTML = 'Unavailable';
+    }
+  }
+
+  window.onload = function() {
+    if (typeof connect !== "undefined") {
+      // Register status callback
+      connect.registerStatusCallback('onStatusChange', RESOURCE_POOL_ID);
+    }
+  };
+</script> 
