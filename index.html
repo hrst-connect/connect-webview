@@ -8,18 +8,18 @@
 <script type="text/javascript">
   const RESOURCE_POOL_ID = 'RILIP0gI8kiGthD7D1QF';
 
-  // Set button event listener
+  // Button event listener
   const buttonCall = document.querySelector('#button-call');
   buttonCall.addEventListener('click', () => {
-    // Check that this is being displayed on Connect's Webview
+    // Check if this device is using Connect
     if (typeof connect !== "undefined") {
       connect.call(RESOURCE_POOL_ID);
     } else {
-      alert("This will only work on Connect's Webview!");
+      alert("Sorry, this will only work on Connect");
     }
   });
 
-  // Status callback
+  // Status listener
   function onStatusChange(availableMembers) {
     let status = document.querySelector('#status');
     if (availableMembers > 0) {
@@ -31,8 +31,8 @@
 
   window.onload = function() {
     if (typeof connect !== "undefined") {
-      // Register status callback
-      connect.registerStatusCallback('onStatusChange', RESOURCE_POOL_ID);
+      // Register status listener
+      connect.addStatusListener('onStatusChange', RESOURCE_POOL_ID);
     }
   };
 </script> 
