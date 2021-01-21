@@ -8,8 +8,8 @@ This is a list of all APIs that are available.
 
 Description | API
 --- | ---
-Call Resource Pool | [connect.call()](#connect.call())
-Resource Pool Status Listener | [connect.addStatusListener()](#connect.addStatusListener())
+Call Resource Pool | [connect.call()](#connectcall)
+Resource Pool Status Listener | [connect.addStatusListener()](#connectaddstatuslistener)
 
 ---
 ### connect.call()
