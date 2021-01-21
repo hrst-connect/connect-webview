@@ -4,7 +4,14 @@ This is an example of how to build a page for Connect.
 Click [here](https://hapi-robo.github.io/connect-webview/) to see the example in your web-browser.
 
 ## API
+This is a list of all APIs that are available.
 
+Description | API
+--- | ---
+Call Resource Pool | [connect.call()](#connect.call())
+Resource Pool Status Listener | [connect.addStatusListener()](#connect.addStatusListener())
+
+---
 ### connect.call()
 The method `connect.call()` initiates a call to an available operator of a resource pool.
 
@@ -33,7 +40,7 @@ buttonCall.addEventListener('click', () => {
 });
 ```
 
-
+---
 ### connect.addStatusListener()
 The method `connect.addStatusListener()` sets up a function that will be called whenever the status of the resource pool changes.
 
