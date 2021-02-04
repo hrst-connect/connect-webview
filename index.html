@@ -42,7 +42,7 @@
       }
 
       window.onload = function() {
-        document.querySelector('#resource-pool').innerHTML = `${RESOURCE_POOL_ID}`;
+        document.querySelector('#resource-pool').innerHTML = `Resource Pool: ${RESOURCE_POOL_ID}`;
         if (typeof connect !== "undefined") {
           // Register status listener
           connect.addStatusListener('onStatusChange', RESOURCE_POOL_ID);
