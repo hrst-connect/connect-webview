@@ -10,7 +10,8 @@
 
   <body>
     <div>
-      <h1 id="status"></h1>
+      <h1 id="network-status"></h1>
+      <h1 id="operator-status"></h1>
       <input type="button" value="Call" id="button-call" />
       <br>
       <p id="resource-pool"></p>
@@ -19,6 +20,8 @@
 
     <script type="text/javascript">
       const RESOURCE_POOL_ID = 'FV4ICw4bxD7qRa92qGA1';
+      const operatorStatus = document.querySelector('#operator-status');
+      const networkStatus = document.querySelector('#network-status');
 
       // Button event listener
       const buttonCall = document.querySelector('#button-call');
@@ -31,23 +34,32 @@
         }
       });
 
-      // Status listener
-      function onStatusChange(availableMembers) {
-        let status = document.querySelector('#status');
+      // Operator status listener
+      function onOperatorStatusChange(availableMembers) {
         if (availableMembers > 0) {
-          status.innerHTML = `Available (${availableMembers})`;
+          operatorStatus.innerHTML = `Available (${availableMembers})`;
         } else {
-          status.innerHTML = 'Unavailable';
+          operatorStatus.innerHTML = 'Unavailable';
         }
       }
 
-      window.onload = function() {
+      window.addEventListener('load', () => {
         document.querySelector('#resource-pool').innerHTML = `${RESOURCE_POOL_ID}`;
         if (typeof connect !== "undefined") {
           // Register status listener
-          connect.addStatusListener('onStatusChange', RESOURCE_POOL_ID);
+          connect.addStatusListener('onOperatorStatusChange', RESOURCE_POOL_ID);
         }
-      };
+      });
+
+      window.addEventListener('offline', () => {
+        console.log('Offline');
+        networkStatus.innerHTML = 'OFFLINE';
+      });
+
+      window.addEventListener('online', () => {
+        console.log('Online');
+        networkStatus.innerHTML = 'ONLINE';
+      });
     </script> 
   </body>
 </html>
