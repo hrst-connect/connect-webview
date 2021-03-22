@@ -8,8 +8,10 @@ This is a list of all APIs that are available.
 
 Description | API
 --- | ---
-Call Resource Pool | [connect.call()](#connectcall)
-Resource Pool Status Listener | [connect.addStatusListener()](#connectaddstatuslistener)
+Call resource pool | [connect.call()](#connectcall)
+Resource pool status listener | [connect.addStatusListener()](#connectaddstatuslistener)
+Go to a saved location | [connect.gotoLocation()](#connectgotolocation)
+Get saved locations | [connect.getLocations()](#connectgetlocations)
 
 ---
 ### connect.call()
