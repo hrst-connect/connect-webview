@@ -78,3 +78,58 @@ function onStatusChange(availableMembers) {
 // Register status listener
 connect.addStatusListener('onStatusChange', resourcePoolId);
 ```
+
+---
+### connect.gotoLocation()
+The method `connect.gotoLocation()` commands the robot to go to a predefined location.
+
+#### Syntax
+```javascript
+connect.gotoLocation(locationName);
+```
+
+#### Parameters
+`locationName`: A location name `String`.
+
+#### Return value
+`undefined`
+
+#### Example
+JavaScript
+```javascript
+connect.goto('home base');
+```
+
+---
+### connect.getLocations()
+The method `connect.getLocations()` a list of all saved locations.
+
+#### Syntax
+```javascript
+connect.getLocations();
+```
+
+#### Parameters
+`none`
+
+#### Return value
+`locationList`: A `String` `List` of all saved locations
+
+#### Example
+HTML
+```html
+<select id="location-list"></select> 
+```
+
+JavaScript
+```javascript
+const locations = JSON.parse(connect.getLocations());
+
+const locationList = document.querySelector('#location-list');
+locations.forEach((location) => {
+  const option = document.createElement('option');
+  option.innerHTML = location;
+  locationList.appendChild(option);
+});
+```
+
