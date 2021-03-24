@@ -28,8 +28,74 @@
       <p><a href="https://github.com/hapi-robo/connect-webview/">GitHub</a></p>
     </div>
 
-    <script src="/index.js"></script>
+    <!-- <script src="/index.js"></script>
     <script src="/call.js"></script>
-    <script src="/navigate.js"></script>
+    <script src="/navigate.js"></script> -->
+    <script>
+      const networkStatus = document.querySelector('#network-status');
+
+      window.addEventListener('offline', () => {
+        console.log('Offline');
+        networkStatus.innerHTML = 'OFFLINE';
+      });
+
+      window.addEventListener('online', () => {
+        console.log('Online');
+        networkStatus.innerHTML = 'ONLINE';
+      });
+    
+
+      const RESOURCE_POOL_ID = 'FV4ICw4bxD7qRa92qGA1';
+
+      // Call button event listener
+      const buttonCall = document.querySelector('#button-call');
+      buttonCall.addEventListener('click', () => {
+        // Check if this device is using Connect
+        if (typeof connect !== "undefined") {
+          connect.call(RESOURCE_POOL_ID);
+        } else {
+          alert("Sorry, this will only work on Connect");
+        }
+      });
+
+      // Operator status listener
+      function onOperatorStatusChange(availableMembers) {
+        const operatorStatus = document.querySelector('#operator-status');
+        if (availableMembers > 0) {
+          operatorStatus.innerHTML = `Available (${availableMembers})`;
+        } else {
+          operatorStatus.innerHTML = 'Unavailable';
+        }
+      }
+
+      // Loading window
+      window.addEventListener('load', () => {
+        document.querySelector('#resource-pool').innerHTML = `${RESOURCE_POOL_ID}`;
+        
+        // Register resource pool status listener
+        if (typeof connect !== "undefined") {
+          connect.addStatusListener('onOperatorStatusChange', RESOURCE_POOL_ID);
+        }
+      });
+
+
+      // Go to location event listener
+      const locationList = document.querySelector('#location-list');
+      locationList.addEventListener('change', (event) => {
+        const selectedLocation = event.target.value;
+        connect.gotoLocation(selectedLocation);
+      });
+
+      window.addEventListener('load', () => {
+        // Create a list of locations  
+        const locations = JSON.parse(connect.getLocations());
+        locations.forEach((location) => {
+          const option = document.createElement('option');
+          option.innerHTML = location;
+          locationList.appendChild(option);
+        });
+      });
+
+    </script>
   </body>
 </html>
