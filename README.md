@@ -3,6 +3,16 @@ This is an example of how to build a page for Connect.
 
 Click [here](https://hapi-robo.github.io/connect-webview/) to see the example in your web-browser. Note, however, that some features may not work unless running from Connect.
 
+## Usage
+Fork this repository (or select `Use this template`) and [host directly on GitHub](https://pages.github.com/).
+
+### Resource Pools
+Add your `RESOURCE_POOL_ID` [here](https://github.com/hapi-robo/connect-webview/blob/616819f61c11d6d71c1a71421a0bfcb1a0140dfd/js/resource-pool.js#L1). You can find your resource pool ID in the Connect webapp under `Resource Pools`.
+
+In the example below, the resource pool ID is `xxUC9cEdWkWKBb9fk4PJ`.
+![resource-pool-id](docs/resource_pool_id.png)
+
+
 ## API
 This is a list of all APIs that are available.
 
