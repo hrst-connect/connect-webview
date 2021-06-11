@@ -1,5 +1,4 @@
-// const RESOURCE_POOL_ID = 'FV4ICw4bxD7qRa92qGA1'; // dev
-const RESOURCE_POOL_ID = 'xxUC9cEdWkWKBb9fk4PJ'; // beta
+const RESOURCE_POOL_ID = ''; // insert your resource pool ID here
 
 // Resource pool status listener
 function onResourcePoolStatusChange(availableOperators) {
