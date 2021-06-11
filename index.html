@@ -10,90 +10,139 @@
 
   <body>
     <div>
-      <h1 id="network-status"></h1>
-      <h1 id="operator-status"></h1>
-      <input type="button" value="Call" id="button-call" />
-      <br>
-      <p id="resource-pool"></p>
+      <h1>Connect Webview Example</h1>
 
-      <br><br>
-      <label for="cars">Choose a Location</label>
-      <br>
-      <select id="location-list"></select> 
+      <div>
+        <h2>System</h2>
+        <h2 id="network-status"></h2>
+      </div>
 
-      <br><br>
-      <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/povY6y1AXD0" frameborder="0" allow="autoplay; clipboard-write; encrypted-media;" allowfullscreen></iframe>
-      
-      <br><br>
-      <p><a href="https://github.com/hapi-robo/connect-webview/">GitHub</a></p>
+      <div>
+        <h2>Resource Pool</h2>
+        <p>
+          <span id="resource-pool"></span> | 
+          <span id="operator-status"></span>
+        </p>
+        <button type="button" id="button-call">Call</button>  
+      </div>
+
+      <div>
+        <h2>Navigation</h2>
+        <select id="location-list"></select>   
+      </div>
+
+      <div>
+        <h2>Movement</h2>
+        <button type="button" id="button-turn">Turn</button>
+        <button type="button" id="button-tilt">Tilt</button>
+      </div>
+
+      <div>
+        <h2>Speech</h2>
+        <button type="button" id="button-speak">Speak</button>
+      </div>
+
     </div>
 
     <!-- <script src="/index.js"></script>
     <script src="/call.js"></script>
     <script src="/navigate.js"></script> -->
-    <script>
-      const networkStatus = document.querySelector('#network-status');
+    <script src="js/movement.js"></script>
 
+    <script>
+      // -----------------------
+      // SYSTEM
+      // -----------------------
+      // Check and display network status
+      const networkStatus = document.querySelector('#network-status');
       window.addEventListener('offline', () => {
         console.log('Offline');
         networkStatus.innerHTML = 'OFFLINE';
       });
-
       window.addEventListener('online', () => {
         console.log('Online');
         networkStatus.innerHTML = 'ONLINE';
       });
-    
 
-      const RESOURCE_POOL_ID = 'FV4ICw4bxD7qRa92qGA1';
+      // -----------------------
+      // RESOURCE POOL
+      // -----------------------
+      // const RESOURCE_POOL_ID = 'FV4ICw4bxD7qRa92qGA1'; // dev
+      const RESOURCE_POOL_ID = 'xxUC9cEdWkWKBb9fk4PJ'; // beta
 
-      // Call button event listener
       const buttonCall = document.querySelector('#button-call');
       buttonCall.addEventListener('click', () => {
-        // Check if this device is using Connect
-        if (typeof connect !== "undefined") {
+        if (typeof connect !== 'undefined') {
           connect.call(RESOURCE_POOL_ID);
-        } else {
-          alert("Sorry, this will only work on Connect");
         }
       });
 
-      // Operator status listener
-      function onOperatorStatusChange(availableMembers) {
+      // Resource pool status listener
+      function onResourcePoolStatusChange(availableOperators) {
         const operatorStatus = document.querySelector('#operator-status');
-        if (availableMembers > 0) {
-          operatorStatus.innerHTML = `Available (${availableMembers})`;
+        if (availableOperators > 0) {
+          operatorStatus.innerHTML = `Available (${availableOperators})`;
+          operatorStatus.style.color = 'green';
         } else {
           operatorStatus.innerHTML = 'Unavailable';
+          operatorStatus.style.color = 'red';
         }
       }
 
-      // Loading window
+      // Register resource pool status listener
       window.addEventListener('load', () => {
         document.querySelector('#resource-pool').innerHTML = `${RESOURCE_POOL_ID}`;
-        
-        // Register resource pool status listener
-        if (typeof connect !== "undefined") {
-          connect.addStatusListener('onOperatorStatusChange', RESOURCE_POOL_ID);
+        if (typeof connect !== 'undefined') {
+          connect.addResourcePoolStatusListener('onResourcePoolStatusChange', RESOURCE_POOL_ID);
         }
       });
-
-
-      // Go to location event listener
+    
+      // -----------------------
+      // NAVIGATION
+      // -----------------------
       const locationList = document.querySelector('#location-list');
       locationList.addEventListener('change', (event) => {
         const selectedLocation = event.target.value;
         connect.gotoLocation(selectedLocation);
       });
 
+      // Create a list of locations  
       window.addEventListener('load', () => {
-        // Create a list of locations  
-        const locations = JSON.parse(connect.getLocations());
-        locations.forEach((location) => {
-          const option = document.createElement('option');
-          option.innerHTML = location;
-          locationList.appendChild(option);
-        });
+        if (typeof connect !== 'undefined') {
+          const locations = JSON.parse(connect.getLocations());
+          locations.forEach((location) => {
+            const option = document.createElement('option');
+            option.innerHTML = location;
+            locationList.appendChild(option);
+          });
+        }
+      });
+
+      // -----------------------
+      // MOVEMENT
+      // -----------------------
+      const buttonTurn = document.querySelector('#button-turn');
+      buttonTurn.addEventListener('click', (event) => {
+        if (typeof connect !== 'undefined') {
+          connect.turnBy(90); // [degrees]
+        }
+      });
+
+      const buttonTilt = document.querySelector('#button-tilt');
+      buttonTilt.addEventListener('click', (event) => {
+        if (typeof connect !== 'undefined') {
+          connect.tiltBy(90); // [-25, +55] [degrees]
+        }
+      });
+
+      // -----------------------
+      // SPEECH
+      // -----------------------
+      const buttonSpeak = document.querySelector('#button-speak');
+      buttonSpeak.addEventListener('click', (event) => {
+        if (typeof connect !== 'undefined') {
+          connect.speak("Hello World");
+        }
       });
 
     </script>
