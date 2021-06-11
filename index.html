@@ -14,7 +14,10 @@
 
       <div>
         <h2>System</h2>
-        <h2 id="network-status"></h2>
+        <div>
+          <p id="network-status"></p>
+          <p id="connect-resource"></p>  
+        </div>
       </div>
 
       <div>
@@ -44,107 +47,11 @@
 
     </div>
 
-    <!-- <script src="/index.js"></script>
-    <script src="/call.js"></script>
-    <script src="/navigate.js"></script> -->
+    <!-- JavaScript -->
+    <script src="js/system.js"></script>
+    <script src="js/resource-pool.js"></script>
+    <script src="js/navigation.js"></script>
     <script src="js/movement.js"></script>
-
-    <script>
-      // -----------------------
-      // SYSTEM
-      // -----------------------
-      // Check and display network status
-      const networkStatus = document.querySelector('#network-status');
-      window.addEventListener('offline', () => {
-        console.log('Offline');
-        networkStatus.innerHTML = 'OFFLINE';
-      });
-      window.addEventListener('online', () => {
-        console.log('Online');
-        networkStatus.innerHTML = 'ONLINE';
-      });
-
-      // -----------------------
-      // RESOURCE POOL
-      // -----------------------
-      // const RESOURCE_POOL_ID = 'FV4ICw4bxD7qRa92qGA1'; // dev
-      const RESOURCE_POOL_ID = 'xxUC9cEdWkWKBb9fk4PJ'; // beta
-
-      const buttonCall = document.querySelector('#button-call');
-      buttonCall.addEventListener('click', () => {
-        if (typeof connect !== 'undefined') {
-          connect.call(RESOURCE_POOL_ID);
-        }
-      });
-
-      // Resource pool status listener
-      function onResourcePoolStatusChange(availableOperators) {
-        const operatorStatus = document.querySelector('#operator-status');
-        if (availableOperators > 0) {
-          operatorStatus.innerHTML = `Available (${availableOperators})`;
-          operatorStatus.style.color = 'green';
-        } else {
-          operatorStatus.innerHTML = 'Unavailable';
-          operatorStatus.style.color = 'red';
-        }
-      }
-
-      // Register resource pool status listener
-      window.addEventListener('load', () => {
-        document.querySelector('#resource-pool').innerHTML = `${RESOURCE_POOL_ID}`;
-        if (typeof connect !== 'undefined') {
-          connect.addResourcePoolStatusListener('onResourcePoolStatusChange', RESOURCE_POOL_ID);
-        }
-      });
-    
-      // -----------------------
-      // NAVIGATION
-      // -----------------------
-      const locationList = document.querySelector('#location-list');
-      locationList.addEventListener('change', (event) => {
-        const selectedLocation = event.target.value;
-        connect.gotoLocation(selectedLocation);
-      });
-
-      // Create a list of locations  
-      window.addEventListener('load', () => {
-        if (typeof connect !== 'undefined') {
-          const locations = JSON.parse(connect.getLocations());
-          locations.forEach((location) => {
-            const option = document.createElement('option');
-            option.innerHTML = location;
-            locationList.appendChild(option);
-          });
-        }
-      });
-
-      // -----------------------
-      // MOVEMENT
-      // -----------------------
-      const buttonTurn = document.querySelector('#button-turn');
-      buttonTurn.addEventListener('click', (event) => {
-        if (typeof connect !== 'undefined') {
-          connect.turnBy(90); // [degrees]
-        }
-      });
-
-      const buttonTilt = document.querySelector('#button-tilt');
-      buttonTilt.addEventListener('click', (event) => {
-        if (typeof connect !== 'undefined') {
-          connect.tiltBy(90); // [-25, +55] [degrees]
-        }
-      });
-
-      // -----------------------
-      // SPEECH
-      // -----------------------
-      const buttonSpeak = document.querySelector('#button-speak');
-      buttonSpeak.addEventListener('click', (event) => {
-        if (typeof connect !== 'undefined') {
-          connect.speak("Hello World");
-        }
-      });
-
-    </script>
+    <script src="js/speech.js"></script>
   </body>
 </html>
