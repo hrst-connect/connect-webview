@@ -1,7 +1,7 @@
 # Connect Webview
 This is an example of how to build a page for Connect.
 
-Click [here](https://hapi-robo.github.io/connect-webview/) to see the example in your web-browser.
+Click [here](https://hapi-robo.github.io/connect-webview/) to see the example in your web-browser. Note, however, that some features may not work unless running from Connect.
 
 ## API
 This is a list of all APIs that are available.
@@ -9,9 +9,12 @@ This is a list of all APIs that are available.
 Description | API
 --- | ---
 Call resource pool | [connect.call()](#connectcall)
-Resource pool status listener | [connect.addStatusListener()](#connectaddstatuslistener)
+Resource pool status listener | [connect.addResourcePoolStatusListener()](#connectaddResourcePoolStatusListener)
 Go to a saved location | [connect.gotoLocation()](#connectgotolocation)
 Get saved locations | [connect.getLocations()](#connectgetlocations)
+Command robot to turn its mobile base | [connect.turnBy()](#connectturnby)
+Command robot to tilt its screen | [connect.tiltBy()](#connecttiltby)
+Text-to-speech request | [connect.speak()](#connectspeak)
 
 ---
 ### connect.call()
@@ -31,7 +34,7 @@ connect.call(resourcePoolId);
 #### Example
 HTML
 ```html
-<input type="button" value="Call" id="button-call" />
+<button type="button" id="button-call">Call</button>
 ```
 
 JavaScript
@@ -43,16 +46,16 @@ buttonCall.addEventListener('click', () => {
 ```
 
 ---
-### connect.addStatusListener()
-The method `connect.addStatusListener()` sets up a function that will be called whenever the status of the resource pool changes.
+### connect.addResourcePoolStatusListener()
+The method `connect.addResourcePoolStatusListener()` sets up a function that will be called whenever the status of the resource pool changes.
 
 #### Syntax
 ```javascript
-connect.addStatusListener(listener, resourcePoolId);
+connect.addResourcePoolStatusListener(listener, resourcePoolId);
 ```
 
 #### Parameters
-`listener`: A `String` name of the JavaScript function that receives a notification when the status of the resource pool changes. The function must have `availableMembers` as an argument, which indicates the number of members in a resource pool that are currently available.
+`listener`: A `String` name of the JavaScript function that receives a notification when the status of the resource pool changes. The function must have `availableOperators` as an argument, which indicates the number of operators in a resource pool that are currently available.
 
 `resourcePoolId`: A resource pool's unique identifier `String`.
 
@@ -68,12 +71,12 @@ HTML
 JavaScript
 ```javascript
 // Status listener
-function onStatusChange(availableMembers) {
-  let status = document.querySelector('#status');
-  if (availableMembers > 0) {
-    status.innerHTML = `Available (${availableMembers})`;
+function onResourcePoolStatusChange(availableOperators) {
+  const operatorStatus = document.querySelector('#status');
+  if (availableOperators > 0) {
+    operatorStatus.innerHTML = `Available (${availableOperators})`;
   } else {
-    status.innerHTML = 'Unavailable';
+    operatorStatus.innerHTML = 'Unavailable';
   }
 }
 
@@ -133,5 +136,70 @@ locations.forEach((location) => {
   option.innerHTML = location;
   locationList.appendChild(option);
 });
+```
+
+---
+### connect.turnBy()
+The method `connect.turnBy()` commands the robot to rotate its mobile base by the given angle.
+
+#### Syntax
+```javascript
+connect.turnBy(angle);
+```
+
+#### Parameters
+`angle`: Relative angle by which to turn `int`. A positive value turns to the left. A negative value turns to the right.
+
+#### Return value
+`undefined`
+
+#### Example
+JavaScript
+```javascript
+connect.turnBy(+90); // turn 90 degrees to the left
+connect.turnBy(-90); // turn 90 degrees to the right
+```
+
+---
+### connect.tiltBy()
+The method `connect.tiltBy()` commands the robot to tilt its screen by the given angle.
+
+#### Syntax
+```javascript
+connect.tiltBy(angle);
+```
+
+#### Parameters
+`angle`: Relative angle by which to turn `int`. A positive value tilts the screen upwards. A negative value tilts the screen downwards. The range of values is between -25 to +55 degrees.
+
+#### Return value
+`undefined`
+
+#### Example
+JavaScript
+```javascript
+connect.tiltBy(+55); // tilt the screen all the way up
+connect.tiltBy(-25); // tilt the screen all the way down
+```
+
+---
+### connect.speak()
+The method `connect.speak()` takes text and synthesizes speech (i.e. text-to-speech, or TTS) that is played out over the device's speaker.
+
+#### Syntax
+```javascript
+connect.speak(text);
+```
+
+#### Parameters
+`text`: Text `String` to send to the speech synthesizer.
+
+#### Return value
+`undefined`
+
+#### Example
+JavaScript
+```javascript
+connect.speak("Hello world!");
 ```
 
