@@ -71,17 +71,13 @@ HTML
 JavaScript
 ```javascript
 // Status listener
+const operatorStatus = document.querySelector('#status');
 function onResourcePoolStatusChange(availableOperators) {
-  const operatorStatus = document.querySelector('#status');
-  if (availableOperators > 0) {
-    operatorStatus.innerHTML = `Available (${availableOperators})`;
-  } else {
-    operatorStatus.innerHTML = 'Unavailable';
-  }
+  operatorStatus.innerHTML = `Available Operators: ${availableOperators}`;
 }
 
 // Register status listener
-connect.addStatusListener('onStatusChange', resourcePoolId);
+connect.addResourcePoolStatusListener('onResourcePoolStatusChange', resourcePoolId);
 ```
 
 ---
@@ -148,7 +144,7 @@ connect.turnBy(angle);
 ```
 
 #### Parameters
-`angle`: Relative angle by which to turn `int`. A positive value turns to the left. A negative value turns to the right.
+`angle`: Relative `int` angle (degrees) by which to turn. A positive value turns to the left. A negative value turns to the right.
 
 #### Return value
 `undefined`
@@ -170,7 +166,7 @@ connect.tiltBy(angle);
 ```
 
 #### Parameters
-`angle`: Relative angle by which to turn `int`. A positive value tilts the screen upwards. A negative value tilts the screen downwards. The range of values is between -25 to +55 degrees.
+`angle`: Relative `int` angle (degrees) by which to tilt. A positive value tilts the screen upwards. A negative value tilts the screen downwards. Values can range between -25 to +55 degrees.
 
 #### Return value
 `undefined`
