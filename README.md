@@ -11,7 +11,7 @@ Add your `RESOURCE_POOL_ID` [here](https://github.com/hapi-robo/connect-webview/
 
 In the example below, the resource pool ID is `xxUC9cEdWkWKBb9fk4PJ`.
 
-![resource-pool-id](docs/resource_pool_id.png)
+![resource-pool-id](docs/assets/resource_pool_id.png)
 
 
 ## API
