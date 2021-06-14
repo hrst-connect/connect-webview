@@ -1,5 +1,5 @@
-let turnState = 0;
-let tiltState = 0;
+let turnState = false;
+let tiltState = false;
 
 const buttonTurn = document.querySelector('#button-turn');
 buttonTurn.addEventListener('click', (event) => {
@@ -8,7 +8,7 @@ buttonTurn.addEventListener('click', (event) => {
   } else {
     connect.turnBy(-90); // [degrees]
   }
-  turnState ^= 1; // toggle state
+  turnState = !turnState; // toggle state
 });
 
 const buttonTilt = document.querySelector('#button-tilt');
@@ -18,5 +18,5 @@ buttonTilt.addEventListener('click', (event) => {
   } else {
     connect.tiltBy(-25); // [degrees]
   }
-  tiltState ^= 1; // toggle state
+  tiltState = !tiltState; // toggle state
 });
