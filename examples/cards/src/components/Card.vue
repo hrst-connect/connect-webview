@@ -27,10 +27,9 @@
           <div class="row gx-5 mb-2">
             <div class="col-8">
               <p>{{ data.body }}</p>
-              <button class="btn btn-outline-dark" type="button" @click="readBody"><i class="fas fa-volume-up me-2"></i>Read it!</button>
+              <button class="btn btn-outline-dark" type="button" @click="readStart"><i class="fas fa-volume-up me-2"></i>Read it!</button>
             </div>
             <div class="col-4">
-              <!-- <img :src="require('@/assets/images/photo-bicycle.jpg')" class="img-fluid"> -->
               <img :src="data.image" class="img-fluid">
             </div>
           </div>
@@ -56,30 +55,31 @@ export default {
   },
   setup(props) {
     const modalRef = ref(null)
+    const isReading = ref(false)
     let modal
 
     const showDetails = () => {
       modal.show()
     }
 
-    const readBody = () => {
-      console.debug(`Read text: ${props.body}`)
+    const readStart = () => {
+      console.debug(`Read text: ${props.data.body}`)
       if (typeof connect !== 'undefined') {
-        connect.say(props.body)
+        connect.speak(props.data.body)
       }
     }
 
     const gotoLocation = () => {
-      console.debug(`Going to: ${props.locationName}`)
+      console.debug(`Going to: ${props.data.locationName}`)
       if (typeof connect !== 'undefined') {
-        connect.goto(props.locationName)
+        connect.gotoLocation(props.data.locationName)
       }
     }
 
     const callExpert = () => {
-      console.debug(`Calling: ${props.resourcePoolId}`)
+      console.debug(`Calling: ${props.data.resourcePoolId}`)
       if (typeof connect !== 'undefined') {
-        connect.call(props.resourcePoolId)
+        connect.call(props.data.resourcePoolId)
       }
     }
 
@@ -91,7 +91,7 @@ export default {
       modal = new Modal(modalRef.value, options)
     })
 
-    return { modalRef, showDetails, readBody, gotoLocation, callExpert }
+    return { modalRef, showDetails, readStart, gotoLocation, callExpert }
   }
 }
 </script>
