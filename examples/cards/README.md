@@ -1,5 +1,7 @@
 # Cards Example
 
+Insert your resource pool ID in `data/data.js`, 
+
 ## Project setup
 ```
 npm install
