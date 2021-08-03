@@ -1,4 +1,4 @@
-const RESOURCE_POOL_ID = 'WYgcE672wZB4cr9KuoAD'; // insert resource pool ID here
+const RESOURCE_POOL_ID = 'DH3E1hCBmF006op06QLd'; // insert resource pool ID here
 
 const callButton = document.querySelector('#call-button');
 
@@ -23,7 +23,10 @@ function onResourcePoolStatusChange(availableMembers) {
   }
 }
 
-window.onload = () => {  
+window.onload = () => {
+  // Add resource pool ID
+  document.querySelector('#resource-pool-id').innerHTML = RESOURCE_POOL_ID;
+
   // Initialize call button
   callButton.style.display = 'block';  
   callButton.addEventListener('click', callOperator);
