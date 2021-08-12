@@ -1,4 +1,4 @@
-const RESOURCE_POOL_ID = 'DH3E1hCBmF006op06QLd'; // insert resource pool ID here
+const RESOURCE_POOL_ID = 'xxUC9cEdWkWKBb9fk4PJ'; // insert resource pool ID here
 
 const callButton = document.querySelector('#call-button');
 
