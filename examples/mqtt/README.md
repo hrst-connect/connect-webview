@@ -9,9 +9,9 @@ npm install
 
 Add `.env.local` file to the root folder containing the following information:
 ```
-VUE_APP_HOST_NAME=<mqtt-host-name>
-VUE_APP_HOST_PORT=<mqtt-host-port-websockets>
-VUE_APP_ENDPOINT=<mqtt-host-endpoint>
+VUE_APP_HOST_NAME=<mqtt-broker-hostname>
+VUE_APP_HOST_PORT=<mqtt-broker-host-port-websockets>
+VUE_APP_ENDPOINT=<mqtt-broker-host-endpoint>
 VUE_APP_USERNAME=<mqtt-broker-username>
 VUE_APP_PASSWORD=<mqtt-broker-password>
 ```
