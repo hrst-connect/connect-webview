@@ -1,14 +1,16 @@
 <template>
-  <video v-if="videoSrc" class="vertical-center" autoplay muted loop>
-    <source :src="videoSrc" type="video/mp4">
-  </video>
+  <div>
+    <video v-if="videoSrc" class="vertical-center" autoplay muted loop>
+      <source :src="videoSrc" type="video/mp4">
+    </video>
 
-  <p v-show="error" style="color: white">{{ error }}</p>
-  <p v-show="resp" style="color: white">{{ resp }}</p>
+    <p v-show="error" style="color: white">{{ error }}</p>
+    <p v-show="resp" style="color: white">{{ resp }}</p>
+  </div>
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 
 import mqtt from '@/composables/mqtt'
 import robot from '@/composables/robot'
@@ -17,8 +19,11 @@ export default {
   setup() {
     const videoSrc = ref(null)
 
-    const deviceId = '00119260058'
-    mqtt.init(deviceId)
+    onMounted(() => {
+      if (robot.getId()) {
+        mqtt.init(robot.getId())
+      }
+    })
 
     watch(mqtt.message, () => {
       const command = mqtt.message.value.command
@@ -29,10 +34,10 @@ export default {
         case 'move':
           switch (action) {
             case 'turn_by':
-              robot.turnBy(payload.angle)
+              robot.turn(payload.angle)
               break
             case 'tilt_by':
-              robot.tiltBy(payload.angle)
+              robot.tilt(payload.angle)
               break
             default:
               break
