@@ -89,7 +89,7 @@ const robot = (() => {
     tilt,
     gotoLocation,
     getLocations,
-    say
+    speak
   }
 })()
 
