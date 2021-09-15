@@ -1,4 +1,4 @@
-import robot from '@/composables/robot'
+import robot from './robot'
 
 const sleep = (ms) => {
   return new Promise(resolve => setTimeout(resolve, ms));

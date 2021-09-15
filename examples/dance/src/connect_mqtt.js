@@ -1,20 +1,22 @@
-// https://www.emqx.com/en/blog/how-to-use-mqtt-in-vue
-import { ref } from 'vue'
-import * as mqttjs from 'mqtt'
+const VUE_APP_HOST_NAME = "34.83.131.39"
+const VUE_APP_HOST_PORT = "8083"
+const VUE_APP_ENDPOINT = "/mqtt"
+const VUE_APP_USERNAME = "connect"
+const VUE_APP_PASSWORD = "hrstqa123"
 
-const mqtt = (() => {
+const mqtt = require('mqtt/dist/mqtt');
+
+const connectMqtt = (() => {
   let client = null
   const deviceType = 'temi'
 
-  const message = ref(null)
-
-  const createInstance = (deviceId) => {
-    const connectUrl = `ws://${process.env.VUE_APP_HOST_NAME}:${process.env.VUE_APP_HOST_PORT}${process.env.VUE_APP_ENDPOINT}`
-    const clientId = `mqttjs-${deviceId}-${Math.random().toString(16).substr(2, 8)}`
+  const createInstance = (deviceId, messageHandler) => {
+    const connectUrl = `ws://${VUE_APP_HOST_NAME}:${VUE_APP_HOST_PORT}${VUE_APP_ENDPOINT}`
+    const clientId = `mqtt-${deviceId}-${Math.random().toString(16).substr(2, 8)}`
     
     var options = {
-      username: process.env.VUE_APP_USERNAME,
-      password: process.env.VUE_APP_PASSWORD,
+      username: VUE_APP_USERNAME,
+      password: VUE_APP_PASSWORD,
       keepalive: 30,
       clientId: clientId,
       protocolId: 'MQTT',
@@ -32,7 +34,7 @@ const mqtt = (() => {
     }
     
     console.log(`Connecting MQTT client to ${connectUrl}`)
-    let client = mqttjs.connect(connectUrl, options)
+    let client = mqtt.connect(connectUrl, options)
 
     client.on('error', (err) => {
       console.error(err)
@@ -63,24 +65,26 @@ const mqtt = (() => {
     client.on('message', (topic, payload, packet) => {
       // console.log(`[RECV]${topic} | ` + payload.toString())
       const topicTree = topic.split("/");
-      message.value = {
+      const message = {
         command: topicTree[3],
         action: topicTree[4],
         payload: JSON.parse(payload),
       }
+
+      messageHandler(message)
     })
   }
 
-  const init = (deviceId) => {
+  const init = (deviceId, messageHandler) => {
     if (!client) {
       console.log('Creating instance')
-      createInstance(deviceId)
+      createInstance(deviceId, messageHandler)
     } else {
       console.log('Re-using instance')
     }
   }
 
-  return { init, message }
+  return { init }
 })()
 
-export default mqtt
+export default connectMqtt

@@ -1,5 +1,3 @@
-import { ref } from 'vue'
-
 const sleep = (ms) => {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -7,16 +5,15 @@ const sleep = (ms) => {
 const robot = (() => {
   const MINIMUM_WAIT = 500 // minimum waiting period between joystick commands [msec]
 
-  const error = ref(null)
-  const resp = ref(null)
+  let resp = null
 
   const getId = () => {
     let id = 'mockup'
     if (typeof connect !== 'undefined') {
       id = connect.getId()
     }
-    resp.value = `Robot ID: ${id}`
-    console.log(resp.value)
+    resp = `Robot ID: ${id}`
+    console.log(resp)
     return id
   }
 
@@ -24,8 +21,8 @@ const robot = (() => {
     if (typeof connect !== 'undefined') {
       connect.joystick(x, y)
     }
-    resp.value = `Joystick: (${x}, ${y})`
-    console.log(resp.value)
+    resp = `Joystick: (${x}, ${y})`
+    console.log(resp)
   }
 
   const move = async (x, y, period) => {
@@ -40,35 +37,35 @@ const robot = (() => {
     if (typeof connect !== 'undefined') {
       connect.turn(angle, 1.0)
     }
-    resp.value = `Turn by: ${angle}`
-    console.log(resp.value)
+    resp = `Turn by: ${angle}`
+    console.log(resp)
   }
 
   const tilt = (angle) => {
     if (typeof connect !== 'undefined') {
       connect.tilt(angle, 1.0, false)
     }
-    resp.value = `Tilt by: ${angle}`
-    console.log(resp.value)
+    resp = `Tilt by: ${angle}`
+    console.log(resp)
   }
 
   const gotoLocation = (locationName) => {
     if (typeof connect !== 'undefined') {
       connect.gotoLocation(locationName)
     }
-    resp.value = `Goto: ${locationName}`
-    console.log(resp.value)
+    resp = `Goto: ${locationName}`
+    console.log(resp)
   }
 
   const getLocations = () => {
     let locations = []
     if (typeof connect !== 'undefined') {
-      error.value = `Can't get locations because this is not running on Connect`
+      console.error("Can't get locations because this is not running on Connect")
     } else {
       locations = connect.getLocations()
     }
-    resp.value = 'Get locations'
-    console.log(resp.value)
+    resp = 'Get locations'
+    console.log(resp)
     return locations
   }
 
@@ -76,12 +73,19 @@ const robot = (() => {
     if (typeof connect !== 'undefined') {
       connect.speak(utterance)
     }
-    resp.value = `Speak: ${utterance}`
-    console.log(resp.value)
+    resp = `Speak: ${utterance}`
+    console.log(resp)
+  }
+
+  const stop = () => {
+    if (typeof connect !== 'undefined') {
+      connect.stop()
+    }
+    resp = 'Stop'
+    console.log(resp)
   }
 
   return {
-    error,
     resp,
     getId,
     move,
@@ -89,7 +93,8 @@ const robot = (() => {
     tilt,
     gotoLocation,
     getLocations,
-    speak
+    speak,
+    stop
   }
 })()
 

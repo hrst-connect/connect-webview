@@ -1,21 +1,24 @@
 {
-  "name": "mqtt",
-  "version": "0.1.0",
+  "name": "dance",
+  "version": "1.0.0",
+  "description": "",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "serve": "webpack serve",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^6.2.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1"
   },
   "dependencies": {
-    "@popperjs/core": "^2.10.1",
-    "bootstrap": "^5.1.1",
-    "core-js": "^3.6.5",
-    "mqtt": "^4.2.8",
-    "vue": "^3.0.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0"
+    "dotenv": "^10.0.0",
+    "mqtt": "^4.2.8"
   }
 }
