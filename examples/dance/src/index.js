@@ -1,12 +1,12 @@
 'user strict'
 
-import './style.css'
+import './css/style.css'
 
-import connectMqtt from './connect_mqtt'
-import robot from './robot'
-import dance from './dance'
+import connectMqtt from './modules/connect_mqtt'
+import robot from './modules/robot'
+import dance from './modules/dance'
 
-const music = new Audio(require('./mj.mp3'))
+const music = new Audio(require('./assets/mj.mp3'))
 
 let state = 0
 
@@ -44,7 +44,7 @@ const play = (playMusic) => {
  */
 const stop = () => {
   console.log('Stop')
-  document.querySelector('#play-btn').style.backgroundColor = 'red'
+  document.querySelector('#play-btn').style.backgroundColor = 'blue'
 
   music.pause()
   robot.stop()
@@ -93,8 +93,10 @@ const messageHandler = (message) => {
 window.onload = () => {
   // Connect to MQTT broker
   const robotId = robot.getId()
-  if (robotId) {
+  if (robotId && process.env.MQTT_HOST_NAME) {
     connectMqtt.init(robotId, messageHandler)
+  } else {
+    console.log('MQTT client not initialized')
   }
 
   // Initialize button style and logic
