@@ -6,6 +6,7 @@ import connectMqtt from '../../_lib/connect-mqtt'
 import dance from './modules/dance'
 
 const music = new Audio(require('./assets/mj.mp3'))
+// const music = new Audio(require('./assets/lg.mp3'))
 
 let state = 0
 

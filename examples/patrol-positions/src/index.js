@@ -6,7 +6,7 @@ import './css/style.css'
 
 import robot from '../../_lib/robot.js'
 
-import positions from './data/positions.js'
+import poses from './data/poses.js'
 
 const music = new Audio(require('./assets/mj.mp3'))
 
@@ -33,9 +33,11 @@ const sleep = (ms) => {
  * Print position to DOM
  */
 const showPosition = () => {
-  const position = robot.getPosition()
-  console.log(`Position: (${position.x}, ${position.y}) | Status: ${robot.getGotoStatus()}`)
-  document.querySelector('#position').innerHTML = `(${position.x}, ${position.y})`
+  const pose = robot.getPose()
+  console.log(`Pose: (${pose.x}, ${pose.y}) | Status: ${robot.getGotoStatus()}`)
+  document.querySelector('#pose').innerHTML = `
+    Position: (${pose.x.toFixed(2)}, ${pose.y.toFixed(2)}) | Yaw: ${Math.round(pose.yaw * 180 / Math.PI)}°
+  `
 }
 
 /**
@@ -47,11 +49,12 @@ const goHome = () => {
 
 /**
  * Go to a coordinate position [blocking]
- * @param {Number} x Position in the X-coordinate frame 
- * @param {Number} y Position in the Y-coordinate frame
+ * @param {Number} x Position in the X-coordinate frame [m]
+ * @param {Number} y Position in the Y-coordinate frame [m]
+ * @param {Number} yaw Yaw angle [rad]
  */
-const gotoPosition = async (x, y) => {
-  robot.gotoPosition(x, y)
+const gotoPose = async (x, y, yaw) => {
+  robot.gotoPose(x, y, yaw)
 
   while (robot.getGotoStatus() !== 'complete') {
     await sleep(500)
@@ -65,9 +68,9 @@ const patrol = async () => {
   playMusic()
 
   // Patrol
-  for (let i = 0; i < positions.length; i++) {
-    const pos = positions[i]
-    await gotoPosition(pos.x, pos.y)
+  for (let i = 0; i < poses.length; i++) {
+    const pos = poses[i]
+    await gotoPose(pos.x, pos.y, pos.yaw)
   }
 
   stop()

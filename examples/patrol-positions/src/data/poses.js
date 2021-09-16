@@ -1,11 +1,12 @@
 // For information about coordinate frames, see:
 // https://temi-guide.readthedocs.io/en/latest/developer/set-robot-pose.html
-
+// (x, y) [m]
+// yaw [rad]
 const positions = [
-  { x: 1, y: 0},
-  { x: 1, y: 1},
-  { x: 1, y: 0},
-  { x: 0, y: 0},
+  { x: 2.85, y: -1.66, yaw: 0 },
+  { x: 4.27, y: -1.75, yaw: 0 },
+  { x: 2.85, y: -1.66, yaw: 0 },
+  { x: 4.27, y: -1.75, yaw: 0 },
 ]
 
 export default positions

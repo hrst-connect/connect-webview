@@ -59,8 +59,6 @@ const gotoLocation = async (locationName) => {
 
   while (robot.getGotoStatus() !== 'complete') {
     await sleep(1000)
-    const position = robot.getPosition()
-    console.log(`Position: (${position.x}, ${position.y}) | Status: ${robot.getGotoStatus()}`)
   }
 }
 

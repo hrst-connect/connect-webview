@@ -44,9 +44,9 @@ const robot = (() => {
     console.log(`Tilt by: ${angle}`)
   }
 
-  const gotoPosition = (x, y) => {
+  const gotoPose = (x, y, yaw) => {
     if (typeof connect !== 'undefined') {
-      connect.gotoPosition(x, y)
+      connect.gotoPose(x, y, yaw)
     }
     console.log(`Goto: (${x}, ${y})`)
   }
@@ -81,13 +81,14 @@ const robot = (() => {
     console.log('Stop')
   }
 
-  const getPosition = () => {
-    let position = { x: 0, y: 0}
+  const getPose = () => {
+    let pose = { x: 0, y: 0, yaw: 0}
     if (typeof connect !== 'undefined') {
-      position = JSON.parse(connect.getPosition())
+      pose = JSON.parse(connect.getPosition())
+      console.log(pose.yaw)
     }
-    console.log(`Position: (${position.x}, ${position.y})`)
-    return position
+    console.log(`Pose: (${pose.x}, ${pose.y}) | Yaw: ${pose.yaw}`)
+    return pose
   }
 
   const getGotoStatus = () => {
@@ -104,12 +105,12 @@ const robot = (() => {
     move,
     turn,
     tilt,
-    gotoPosition,
+    gotoPose,
     gotoLocation,
     getLocations,
     speak,
     stop,
-    getPosition,
+    getPose,
     getGotoStatus,
   }
 })()

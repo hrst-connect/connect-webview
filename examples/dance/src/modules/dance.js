@@ -15,14 +15,29 @@ const twist = async (iter) => {
 
 const dance = (() => {
   const start = async () => {
-    robot.speak("Start")
+    robot.speak("Tomita")
     robot.tilt(0)
     await sleep(2000) // warm-up navigation
   
-    await twist(3)
+    await twist(2)
+    await robot.tilt(-15)
+    await sleep(1000)
+    await robot.tilt(45)
+    await sleep(1000)
+    await robot.tilt(0)
+    await twist(2)
+
     await robot.move(1.0, 0.0, 2000)
-    await twist(3)
-  
+    await robot.move(-1.0, 0.0, 2000)
+
+    await twist(2)
+    await robot.tilt(-15)
+    await sleep(1000)
+    await robot.tilt(45)
+    await sleep(1000)
+    await robot.tilt(0)
+    await twist(2)
+
     console.log('Done')
   }
 
