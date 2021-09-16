@@ -44,6 +44,13 @@ const robot = (() => {
     console.log(`Tilt by: ${angle}`)
   }
 
+  const gotoPosition = (x, y) => {
+    if (typeof connect !== 'undefined') {
+      connect.gotoPosition(x, y)
+    }
+    console.log(`Goto: (${x}, ${y})`)
+  }
+
   const gotoLocation = (locationName) => {
     if (typeof connect !== 'undefined') {
       connect.gotoLocation(locationName)
@@ -54,11 +61,9 @@ const robot = (() => {
   const getLocations = () => {
     let locations = []
     if (typeof connect !== 'undefined') {
-      console.error("Can't get locations because this is not running on Connect")
-    } else {
-      locations = connect.getLocations()
+      locations = JSON.parse(connect.getLocations())
     }
-    console.log('Get locations')
+    console.log('Locations:', locations)
     return locations
   }
 
@@ -76,15 +81,36 @@ const robot = (() => {
     console.log('Stop')
   }
 
+  const getPosition = () => {
+    let position = { x: 0, y: 0}
+    if (typeof connect !== 'undefined') {
+      position = JSON.parse(connect.getPosition())
+    }
+    console.log(`Position: (${position.x}, ${position.y})`)
+    return position
+  }
+
+  const getGotoStatus = () => {
+    let status = null
+    if (typeof connect !== 'undefined') {
+      status = connect.getGotoStatus()
+    }
+    console.log(`Status: ${status}`)
+    return status
+  }
+
   return {
     getId,
     move,
     turn,
     tilt,
+    gotoPosition,
     gotoLocation,
     getLocations,
     speak,
-    stop
+    stop,
+    getPosition,
+    getGotoStatus,
   }
 })()
 
