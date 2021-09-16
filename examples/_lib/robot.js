@@ -5,15 +5,12 @@ const sleep = (ms) => {
 const robot = (() => {
   const MINIMUM_WAIT = 500 // minimum waiting period between joystick commands [msec]
 
-  let resp = null
-
   const getId = () => {
     let id = 'mockup'
     if (typeof connect !== 'undefined') {
       id = connect.getId()
     }
-    resp = `Robot ID: ${id}`
-    console.log(resp)
+    console.log(`Robot ID: ${id}`)
     return id
   }
 
@@ -21,8 +18,7 @@ const robot = (() => {
     if (typeof connect !== 'undefined') {
       connect.joystick(x, y)
     }
-    resp = `Joystick: (${x}, ${y})`
-    console.log(resp)
+    console.log(`Joystick: (${x}, ${y})`)
   }
 
   const move = async (x, y, period) => {
@@ -30,6 +26,7 @@ const robot = (() => {
     for (let i = 0; i < iter; i++) {
       joystick(x, y)
       await sleep(MINIMUM_WAIT)
+      console.log(`Move: (${x}, ${y}) | Iterations: ${i}/${iter}`)
     }
   } 
 
@@ -37,24 +34,21 @@ const robot = (() => {
     if (typeof connect !== 'undefined') {
       connect.turn(angle, 1.0)
     }
-    resp = `Turn by: ${angle}`
-    console.log(resp)
+    console.log(`Turn by: ${angle}`)
   }
 
   const tilt = (angle) => {
     if (typeof connect !== 'undefined') {
       connect.tilt(angle, 1.0, false)
     }
-    resp = `Tilt by: ${angle}`
-    console.log(resp)
+    console.log(`Tilt by: ${angle}`)
   }
 
   const gotoLocation = (locationName) => {
     if (typeof connect !== 'undefined') {
       connect.gotoLocation(locationName)
     }
-    resp = `Goto: ${locationName}`
-    console.log(resp)
+    console.log(`Goto: ${locationName}`)
   }
 
   const getLocations = () => {
@@ -64,8 +58,7 @@ const robot = (() => {
     } else {
       locations = connect.getLocations()
     }
-    resp = 'Get locations'
-    console.log(resp)
+    console.log('Get locations')
     return locations
   }
 
@@ -73,20 +66,17 @@ const robot = (() => {
     if (typeof connect !== 'undefined') {
       connect.speak(utterance)
     }
-    resp = `Speak: ${utterance}`
-    console.log(resp)
+    console.log(`Speak: ${utterance}`)
   }
 
   const stop = () => {
     if (typeof connect !== 'undefined') {
       connect.stop()
     }
-    resp = 'Stop'
-    console.log(resp)
+    console.log('Stop')
   }
 
   return {
-    resp,
     getId,
     move,
     turn,

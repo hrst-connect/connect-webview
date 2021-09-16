@@ -16,12 +16,14 @@ MQTT_PASSWORD=<mqtt-broker-password>
 ```
 
 ## Usage
-To serve the example locally for development:
-```
-npm run serve
-```
-
 To build the example:
 ```
 npm run build
 ```
+
+To automatically build and serve the example with live updates locally:
+```
+npm run serve
+```
+
+Then go to `https://localhost:8080/` in your web-browser or send it to your Connect WebView.

@@ -1,4 +1,4 @@
-import robot from './robot'
+import robot from '../../../_lib/robot.js'
 
 const sleep = (ms) => {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -13,16 +13,24 @@ const twist = async (iter) => {
   }
 }
 
-const dance = async () => {
-  robot.speak("Start")
-  robot.tilt(0)
-  await sleep(2000) // warm-up navigation
+const dance = (() => {
+  const start = async () => {
+    robot.speak("Start")
+    robot.tilt(0)
+    await sleep(2000) // warm-up navigation
+  
+    await twist(3)
+    await robot.move(1.0, 0.0, 2000)
+    await twist(3)
+  
+    console.log('Done')
+  }
 
-  await twist(3)
-  await robot.move(1.0, 0.0, 2000)
-  await twist(3)
+  const stop = () => {
+    robot.stop()
+  }
 
-  console.log('Done')
-}
+  return { start, stop }
+})()
 
 export default dance

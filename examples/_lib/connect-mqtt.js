@@ -1,10 +1,13 @@
 const mqtt = require('mqtt/dist/mqtt');
+import robot from './robot.js'
+
+const DEVICE_TYPE = 'temi'
 
 const connectMqtt = (() => {
   let client = null
-  const deviceType = 'temi'
 
-  const createInstance = (deviceId, messageHandler) => {
+  const createInstance = (messageHandler) => {
+    const deviceId = robot.getId()
     const connectUrl = `ws://${process.env.MQTT_HOST_NAME}:${process.env.MQTT_HOST_PORT}${process.env.MQTT_ENDPOINT}`
     const clientId = `mqtt-${deviceId}-${Math.random().toString(16).substr(2, 8)}`
     
@@ -18,46 +21,24 @@ const connectMqtt = (() => {
       clean: true,
       reconnectPeriod: 1000,
       connectTimeout: 30 * 1000,
-      will: {
-        topic: 'WillMsg',
-        payload: 'Connection closed abnormally..!',
-        qos: 0,
-        retain: false
-      },
       rejectUnauthorized: false
     }
     
     console.log(`Connecting MQTT client to ${connectUrl}`)
     let client = mqtt.connect(connectUrl, options)
 
-    client.on('error', (err) => {
-      console.error(err)
-      client.end()
-      client = null
-    })
-  
     client.on('connect', () => {
       console.log(`MQTT client connected: ${clientId}`)
-      
-      // Subscriptions
-      client.subscribe(`${deviceType}/${deviceId}/command/#`, { qos: 1 })
+      client.subscribe(`${DEVICE_TYPE}/${deviceId}/command/#`, { qos: 1 })
     })
-  
-    client.on('reconnect', () => {
-      console.log(`Attempting to reconnect`)
-    })
-  
+
     client.on('close', () => {
       console.log(clientId + ' disconnected')
       client = null
     })
-  
-    client.on('offline', () => {
-      console.log('MQTT client now offline')
-    })
-  
+
     client.on('message', (topic, payload, packet) => {
-      // console.log(`[RECV]${topic} | ` + payload.toString())
+      // console.debug(`[RECV]${topic} | ` + payload.toString())
       const topicTree = topic.split("/");
       const message = {
         command: topicTree[3],
@@ -69,10 +50,10 @@ const connectMqtt = (() => {
     })
   }
 
-  const init = (deviceId, messageHandler) => {
+  const init = (messageHandler) => {
     if (!client) {
       console.log('Creating instance')
-      createInstance(deviceId, messageHandler)
+      createInstance(messageHandler)
     } else {
       console.log('Re-using instance')
     }
