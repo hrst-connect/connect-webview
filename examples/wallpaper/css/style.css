@@ -1,5 +1,6 @@
 html, body {
-  background-image: url('../images/background.jpg');
+  background-image: url('../images/hotel.jpg');
+  /* background-image: url('../images/tokyo.jpg'); */
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -21,12 +22,16 @@ html, body {
 
 .btn-primary {
   color: white;
-  background-color: #1f9ad3;
-  border-color: #1f9ad3
+  /* background-color: #1f9ad3;
+  border-color: #1f9ad3 */
+  background-color: #f700ff;
+  border-color: #f700ff
 }
 
 .btn-primary:hover {
   color: white;
-  background-color: #1660a7;
-  border-color: #1660a7;
+  /* background-color: #1660a7;
+  border-color: #1660a7; */
+  background-color: #9616a7;
+  border-color: #9616a7;
 }

@@ -1,18 +1,22 @@
 # Cards Example
+This example is built using [Vue.js](https://v3.vuejs.org/).
 
-Insert your resource pool ID in `data/data.js`, 
 
-## Project setup
+## Setup
+Install dependencies.
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+Insert your resource pool ID in `data/data.js`, 
+
+## Usage
+To serve the example locally for development:
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+To build the example and prepare it for production:
 ```
 npm run build
 ```

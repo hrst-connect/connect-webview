@@ -23,7 +23,10 @@ function onResourcePoolStatusChange(availableMembers) {
   }
 }
 
-window.onload = () => {  
+window.onload = () => {
+  // Add resource pool ID
+  document.querySelector('#resource-pool-id').innerHTML = RESOURCE_POOL_ID;
+
   // Initialize call button
   callButton.style.display = 'block';  
   callButton.addEventListener('click', callOperator);
