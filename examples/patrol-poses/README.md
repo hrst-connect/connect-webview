@@ -1,0 +1,27 @@
+# Connect WebView Patrol Positions Example
+A WebView that displays the current pose of the robot (with respect to the Home Base), for details, see references below. The robot will patrol a predefined list of poses.
+
+## Setup
+Install dependencies:
+```shell
+npm install
+```
+
+## Usage
+Edit `src/data/poses.js` with your desired set of poses.
+
+To build the example:
+```shell
+npm run build
+```
+
+To automatically build and serve the example with live updates locally:
+```shell
+npm run serve
+```
+
+Then go to [http://localhost:8080/](http://localhost:8080/) in your web-browser or send it to your Connect WebView.
+
+
+## References
+For information about coordinate frames, see [temi Guide: Set Robot Pose](https://temi-guide.readthedocs.io/en/latest/developer/set-robot-pose.html).

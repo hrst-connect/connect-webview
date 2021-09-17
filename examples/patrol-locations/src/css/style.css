@@ -3,7 +3,6 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  /* background-color: black; */
 }
 
 .vertical-center {
@@ -12,8 +11,4 @@ html, body {
   justify-content: center;
   height: 100%;
   width: 100%;
-}
-
-.big-font {
-  font-size: larger;
 }

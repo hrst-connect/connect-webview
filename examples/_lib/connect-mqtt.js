@@ -1,3 +1,7 @@
+/**
+ * Simple MQTT client for communicating with `pytemi` package:
+ * https://github.com/hapi-robo/pytemi
+ */
 const mqtt = require('mqtt/dist/mqtt');
 import robot from './robot.js'
 

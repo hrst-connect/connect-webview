@@ -1,7 +1,9 @@
-const sleep = (ms) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+import sleep from './utils'
 
+/**
+ * Convenience singleton that can be used with Connect or a regular web-browser.
+ * Used for "simulating" robot's behaviour in a web-browser.
+ */
 const robot = (() => {
   const MINIMUM_WAIT = 500 // minimum waiting period between joystick commands [msec]
 

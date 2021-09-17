@@ -21,10 +21,6 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
-      {
-        test: /\.mp3/,
-        type: 'asset/resource',
-      }
     ],
   },
 };

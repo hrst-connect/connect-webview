@@ -2,6 +2,7 @@
 A library of commonly used functions that are used in the examples.
 
 ## Setup
+Install dependencies:
 ```shell
 npm install
 ```

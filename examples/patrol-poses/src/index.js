@@ -4,11 +4,12 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/style.css'
 
-import robot from '../../_lib/robot.js'
+import robot from '../../_lib/robot'
+import sleep from '../../_lib/utils'
 
 import poses from './data/poses.js'
 
-const music = new Audio(require('./assets/mj.mp3'))
+const music = new Audio()
 
 /**
  * Start
@@ -21,22 +22,15 @@ const playMusic = () => {
 }
 
 /**
- * Asynchronous sleep
- * @param {Number} ms Sleep time [milliseconds]
- * @returns 
+ * Print pose to DOM
  */
-const sleep = (ms) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-/**
- * Print position to DOM
- */
-const showPosition = () => {
+const showPose = () => {
   const pose = robot.getPose()
   console.log(`Pose: (${pose.x}, ${pose.y}) | Status: ${robot.getGotoStatus()}`)
   document.querySelector('#pose').innerHTML = `
-    Position: (${pose.x.toFixed(2)}, ${pose.y.toFixed(2)}) | Yaw: ${Math.round(pose.yaw * 180 / Math.PI)}°
+    <p>X: ${pose.x.toFixed(2)} m</p>
+    <p>Y: ${pose.y.toFixed(2)} m</p>
+    <p>Yaw: ${Math.round(pose.yaw * 180 / Math.PI)}°</p>
   `
 }
 
@@ -56,8 +50,14 @@ const goHome = () => {
 const gotoPose = async (x, y, yaw) => {
   robot.gotoPose(x, y, yaw)
 
+  // Poll for goto-complete status
+  let watchdog = 3
   while (robot.getGotoStatus() !== 'complete') {
-    await sleep(500)
+    await sleep(1000)
+    
+    if (watchdog-- < 0) {
+      break
+    }
   }
 }
 
@@ -65,12 +65,15 @@ const gotoPose = async (x, y, yaw) => {
  * Patrol all locations once
  */
 const patrol = async () => {
-  playMusic()
-
-  // Patrol
   for (let i = 0; i < poses.length; i++) {
-    const pos = poses[i]
-    await gotoPose(pos.x, pos.y, pos.yaw)
+    const pose = poses[i]
+
+    // Play music
+    music.src = `https://mp3l.jamendo.com/?trackid=${pose.trackId}&format=mp31`
+    playMusic()
+
+    // Go to location
+    await gotoPose(pose.x, pose.y, pose.yaw)
   }
 
   stop()
@@ -93,6 +96,6 @@ window.onload = () => {
   document.querySelector('#stop-btn').addEventListener('click', stop)
 
   setInterval(() => {
-    showPosition()
+    showPose()
   }, 1000)
 }

@@ -5,12 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/style.css'
 
 import robot from '../../_lib/robot.js'
+import sleep from '../../_lib/utils'
 
-const music = new Audio(require('./assets/mj.mp3'))
+const music = new Audio('https://mp3l.jamendo.com/?trackid=1214935&format=mp31')
 
 const listGroup = document.querySelector('.list-group')
 let locationNames = []
-
 
 /**
  * Start
@@ -20,15 +20,6 @@ const playMusic = () => {
   music.currentTime = 0
   music.loop = true
   music.play()
-}
-
-/**
- * Asynchronous sleep
- * @param {Number} ms Sleep time [milliseconds]
- * @returns 
- */
-const sleep = (ms) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**
@@ -57,8 +48,14 @@ const gotoLocation = async (locationName) => {
   robot.speak(locationName)
   robot.gotoLocation(locationName)
 
+  // Poll for goto-complete status
+  let watchdog = 3
   while (robot.getGotoStatus() !== 'complete') {
     await sleep(1000)
+    
+    if (watchdog-- < 0) {
+      break
+    }
   }
 }
 
@@ -74,7 +71,7 @@ const handleLocationSelection = async (e) => {
 }
 
 /**
- * Patrol all locations once
+ * Patrol all locations (except `home base`)
  */
 const patrol = async () => {
   // Remove `home base` location
@@ -100,12 +97,15 @@ const stop = () => {
   window.location.reload()
 }
 
+/**
+ * Initialize the DOM
+ */
 window.onload = () => {
   // Get all saved locations from the robot,
   // Or construct one for development purposes
   locationNames = robot.getLocations()
   if (locationNames.length <= 0) {
-    locationNames = ['home base', 'tokyo', 'zurich', 'toronto', 'munich', 'boulder', 'los angeles']
+    locationNames = ['home base', 'Tokyo', 'Zurich', 'Munich', 'Boulder', 'Los Angeles', 'Toronto']
   }
 
   // Add locations list to DOM

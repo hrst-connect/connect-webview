@@ -1,12 +1,9 @@
 {
   "name": "connect-js",
   "version": "1.0.0",
-  "description": "",
-  "main": "connect-mqtt.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "description": "Connect WebView Examples Library",
+  "private": true,
+  "author": "Raymond Oung",
   "license": "ISC",
   "dependencies": {
     "mqtt": "^4.2.8"

@@ -1,12 +1,13 @@
 # Connect WebView Dance Example
+A simple WebView that runs a dance sequence using JavaScript. The dance can be started using the user-interface or remotely via MQTT.
 
 ## Setup
-Install dependencies.
+Install dependencies:
 ```
 npm install
 ```
 
-Install common library `/examples/_lib`.
+Install common library `/examples/_lib`:
 ```
 cd ../_lib/
 npm install
@@ -35,7 +36,7 @@ To automatically build and serve the example with live updates, locally:
 npm run serve
 ```
 
-Then go to `http://localhost:8080/` in your web-browser or send it to your Connect WebView.
+Then go to [http://localhost:8080/](http://localhost:8080/) in your web-browser or send it to your Connect WebView.
 
 Tap the button 2 times to start the dance. Button colours should change from `Blue` > `Red` > `Green`.
 
@@ -45,3 +46,5 @@ The button color changes depending on its state:
 - `red`: The dance script is initialized.
 - `green`: The dance script is playing.
 
+### Edit Dance
+The dance sequence can be found in `scr/modules/dance.js`.

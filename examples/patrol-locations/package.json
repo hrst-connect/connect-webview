@@ -1,14 +1,13 @@
 {
-  "name": "patrol",
+  "name": "patrol-locations",
   "version": "1.0.0",
-  "description": "",
+  "description": "Connect WebView Patrol-Locations Example",
   "private": true,
   "scripts": {
     "serve": "webpack serve",
     "build": "webpack"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Raymond Oung",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.2.0",
