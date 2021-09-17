@@ -86,7 +86,7 @@ const robot = (() => {
   const getPose = () => {
     let pose = { x: 0, y: 0, yaw: 0}
     if (typeof connect !== 'undefined') {
-      pose = JSON.parse(connect.getPosition())
+      pose = JSON.parse(connect.getPose())
       console.log(pose.yaw)
     }
     console.log(`Pose: (${pose.x}, ${pose.y}) | Yaw: ${pose.yaw}`)
