@@ -5,9 +5,11 @@ import './css/style.css'
 import connectMqtt from '../../_lib/connect-mqtt'
 import dance from './modules/dance'
 
-const music = new Audio(require('./assets/mj.mp3'))
-// const music = new Audio(require('./assets/lg.mp3'))
+// const music = new Audio('https://mp3l.jamendo.com/?trackid=1869501&format=mp31')
+const music = new Audio('https://mp3l.jamendo.com/?trackid=1214935&format=mp31')
+// const music = new Audio('https://mp3l.jamendo.com/?trackid=1863236&format=mp31')
 
+const playButton = document.querySelector('#play-btn')
 let state = 0
 
 /**
@@ -15,10 +17,9 @@ let state = 0
  */
 const init = () => {
   console.log('Initialize')
-  document.querySelector('#play-btn').style.backgroundColor = 'red'
+  playButton.style.backgroundColor = 'red'
 
   music.currentTime = 0
-  music.play()
   music.pause()
 }
 
@@ -28,7 +29,7 @@ const init = () => {
  */
 const play = (playMusic) => {
   console.log('Play')
-  document.querySelector('#play-btn').style.backgroundColor = 'green'
+  playButton.style.backgroundColor = 'green'
 
   if (playMusic) {
     console.log(`Play Music: ${playMusic}`)
@@ -44,7 +45,7 @@ const play = (playMusic) => {
  */
 const stop = () => {
   console.log('Stop')
-  document.querySelector('#play-btn').style.backgroundColor = 'blue'
+  playButton.style.backgroundColor = 'blue'
 
   music.pause()
   dance.stop()
@@ -57,14 +58,15 @@ const stop = () => {
 const toggleButton = () => {
   switch (state) {
     case 0:
-      init()
       state = 1
+      init()
       break
     case 1:
-      play(true)
       state = 2
+      play(true)
       break
     case 2:
+      state = 0
       stop()
       break
     default:
@@ -81,12 +83,16 @@ const messageHandler = (message) => {
   const payload = message.payload
   console.debug(payload.master)
 
-  if (command === 'dance') {
-    const playMusic = payload.master
-    play(playMusic)
-    state = 2
-  } else if (command === 'stop') {
-    stop()
+  switch (command) {
+    case 'dance':
+      play(payload.master)
+      state = 2
+      break
+    case 'stop':
+      stop()
+      break
+    default:
+      break
   }
 }
 
@@ -99,6 +105,6 @@ window.onload = () => {
   }
 
   // Initialize button style and logic
-  document.querySelector('#play-btn').addEventListener('click', toggleButton)
-  document.querySelector('#play-btn').style.backgroundColor = 'blue'
+  playButton.addEventListener('click', toggleButton)
+  playButton.style.backgroundColor = 'blue'
 }
