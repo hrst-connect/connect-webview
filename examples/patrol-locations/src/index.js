@@ -1,4 +1,4 @@
-'user strict'
+'use strict'
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
