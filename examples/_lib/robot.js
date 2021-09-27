@@ -61,6 +61,16 @@ const robot = (() => {
   }
 
   /**
+   * Follows user (fixed position)
+   */
+  const follow = () => {
+    if (typeof connect !== 'undefined') {
+      connect.follow()
+    }
+    console.log('Follow')
+  }
+
+  /**
    * Sends a single joystick command to the robot. Commands must be continuously sent, otherwise the robot will stop moving after a 500 millisecond timeout.
    * @param {Number} trans Translational velocity; where -1 is full-speed backwards and +1 is full-speed forwards [-1, +1].
    * @param {Number} rot Rotational velocity; where -1 is full-speed counter-clockwise and +1 is full-speed clockwise [-1, +1].
@@ -161,7 +171,43 @@ const robot = (() => {
     if (typeof connect !== 'undefined') {
       status = connect.getGotoStatus()
     }
-    console.log(`Status: ${status}`)
+    console.log(`Goto Status: ${status}`)
+    return status
+  }
+
+  /**
+   * Enable user detection
+   * Note: Connect-Android app must be in Kiosk mode and `Settings` permission must be enabled
+   */
+  const enableUserDetection = () => {
+    if (typeof connect !== 'undefined') {
+      status = connect.enableUserDetection()
+    }
+    console.log('Enable user detection')
+  }
+
+  /**
+   * Disable user detection
+   * Note: Connect-Android app must be in Kiosk mode and `Settings` permission must be enabled
+   */
+  const disableUserDetection = () => {
+    if (typeof connect !== 'undefined') {
+      status = connect.disableUserDetection()
+    }
+    console.log('Disable user detection')
+  }
+
+  /**
+   * Gets the user detection status.
+   * @returns A string indicating the current `user detection` status. This can be one of the following values:
+   * ['idle', 'lost', 'detected', 'unknown'] 
+   */
+  const getUserDetectionStatus = () => {
+    let status = null
+    if (typeof connect !== 'undefined') {
+      status = connect.getUserDetectionStatus()
+    }
+    console.log(`User Detection Status: ${status}`)
     return status
   }
 
@@ -170,6 +216,7 @@ const robot = (() => {
     speak,
     turn,
     tilt,
+    follow,
     move,
     stop,
     getLocations,
@@ -177,6 +224,9 @@ const robot = (() => {
     getPose,
     gotoPose,
     getGotoStatus,
+    enableUserDetection,
+    disableUserDetection,
+    getUserDetectionStatus,
   }
 })()
 
