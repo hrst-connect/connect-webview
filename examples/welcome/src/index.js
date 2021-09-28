@@ -15,6 +15,9 @@ const video = document.querySelector('#video')
 const canvas = document.querySelector('#canvas')
 const query = document.querySelector('#query')
 
+let firstFollow = null
+let firstStop = null
+
 const tasks = [
   {
     speak: 'This is a Connect WebView Welcome Example',
@@ -85,12 +88,9 @@ const startInteraction = async () => {
   }
 }
 
-const stopInteraction = () => {
-  console.log('Stop interaction')
-  reset()
-}
+const reset = async () => {
+  console.log('Reset')
 
-const reset = () => {
   text.innerHTML = null
   text.setAttribute('hidden', true)
   query.setAttribute('hidden', true)
@@ -115,22 +115,20 @@ window.onload = async () => {
   robot.enableUserDetection()
 
   // Poll user detection event
-  let firstFollow = null
-  let firstStop = null
   let status = null
   while (true) {
     await sleep(3000)
     status = robot.getUserDetectionStatus()
 
     if (status === 'detected') {
-      if (!firstFollow) {
+      if (!firstFollow) { // prevent starting the interaction multiple times
         startInteraction()
         firstFollow = true
         firstStop = false // reset
       }
     } else {
       if (!firstStop) {
-        stopInteraction()
+        reset()
         firstStop = true
         firstFollow = false // reset
       }
