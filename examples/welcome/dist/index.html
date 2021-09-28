@@ -8,8 +8,18 @@
   </head>
 
   <body>
+    <div class="container">
+      <p id="text" class="fs-1 fst-italic mt-5" hidden></p>
+      <div id="query" hidden>
+        <button id="btn-yes" type="button" class="btn btn-success btn-lg">Yes</button>
+        <button id="btn-no" type="button" class="btn btn-danger btn-lg">No</button>
+      </div>
+    </div>
+
     <div class="vertical-center">
-      <p id="status"></p>
+      <canvas id="canvas" width="400" height="400" hidden></canvas>
+      <video id="video" hidden></video>
+      <audio id="audio" hidden></audio>
     </div>
 
     <script src="bundle.js"></script>

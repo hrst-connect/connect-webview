@@ -17,6 +17,7 @@
     "webpack-dev-server": "^4.2.1"
   },
   "dependencies": {
+    "@foobar404/wave": "^1.2.7",
     "bootstrap": "^5.1.1"
   }
 }
