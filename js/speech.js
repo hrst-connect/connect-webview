@@ -1,4 +1,6 @@
-const buttonSpeak = document.querySelector('#button-speak');
-buttonSpeak.addEventListener('click', () => {
-  connect.speak("Hello World");
+import robot from '../lib/robot.js'
+
+// Command the robot to speak
+document.querySelector('#button-speak').addEventListener('click', () => {
+  robot.speak("Hello World");
 });

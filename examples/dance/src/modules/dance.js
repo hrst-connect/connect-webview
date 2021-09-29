@@ -1,4 +1,4 @@
-import robot from '../../../_lib/robot.js'
+import robot from '../../../../lib/robot.js'
 
 const sleep = (ms) => {
   return new Promise(resolve => setTimeout(resolve, ms));

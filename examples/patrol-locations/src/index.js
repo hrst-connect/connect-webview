@@ -4,8 +4,8 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/style.css'
 
-import robot from '../../_lib/robot.js'
-import sleep from '../../_lib/utils'
+import robot from '../../../lib/robot'
+import sleep from '../../../lib/utils'
 
 const music = new Audio('https://mp3l.jamendo.com/?trackid=1214935&format=mp31')
 

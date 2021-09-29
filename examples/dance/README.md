@@ -7,7 +7,7 @@ Install dependencies:
 npm install
 ```
 
-Install common library `/examples/_lib`:
+Install common library `lib/` (from respository root directory):
 ```
 cd ../_lib/
 npm install

@@ -4,8 +4,8 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/style.css'
 
-import robot from '../../_lib/robot'
-import sleep from '../../_lib/utils'
+import robot from '../../../lib/robot'
+import sleep from '../../../lib/utils'
 
 import poses from './data/poses.js'
 

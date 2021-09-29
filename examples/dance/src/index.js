@@ -2,7 +2,7 @@
 
 import './css/style.css'
 
-import connectMqtt from '../../_lib/connect-mqtt'
+import connectMqtt from '../../../lib/connect-mqtt'
 import dance from './modules/dance'
 
 // const music = new Audio('https://mp3l.jamendo.com/?trackid=1869501&format=mp31')

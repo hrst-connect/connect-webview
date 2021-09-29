@@ -6,8 +6,8 @@ import './css/style.css'
 
 import Wave from '@foobar404/wave'
 
-import robot from '../../_lib/robot.js'
-import sleep from '../../_lib/utils'
+import robot from '../../../lib/robot'
+import sleep from '../../../lib/utils'
 
 const text = document.querySelector('#text')
 const audio = document.querySelector('#audio')
