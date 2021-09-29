@@ -1,5 +1,5 @@
-# Connect WebView Patrol Locations Example
-A WebView that displays all currently saved locations on the robot. User can command the robot to go to each location or patrol all locations.
+# Connect WebView Welcome Example
+A WebView that runs a randomly selected task when a user approaches it.
 
 ## Setup
 Install dependencies:

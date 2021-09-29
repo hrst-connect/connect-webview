@@ -44,6 +44,10 @@ const tasks = [
   },
 ]
 
+/**
+ * This function is called when a user is detected
+ * It runs a randomly selected task
+ */
 const startInteraction = async () => {
   robot.follow()
 
@@ -88,6 +92,9 @@ const startInteraction = async () => {
   }
 }
 
+/**
+ * Reset DOM and stop media
+ */
 const reset = async () => {
   console.log('Reset')
 
@@ -106,7 +113,6 @@ const reset = async () => {
  */
 window.onload = async () => {
   // Initialize audio visualizer
-  // Ref: https://foobar404.github.io/Wave.js/#/docs
   const wave = new Wave()
   const options = { type: 'fireworks', colors: ['red'] }
   wave.fromElement('audio', 'canvas', options)
