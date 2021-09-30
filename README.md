@@ -12,4 +12,4 @@ To call a resource-pool, add your `RESOURCE_POOL_ID` [here](https://github.com/h
 
 
 ## API
-Documentation for the API can be found [here](https://connect-webview.readthedocs.io/).
+Documentation for the API can be found [here](https://hrst-connect.github.io/connect-webview/).
