@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Adding meta -->
+    
+
+    <!-- Adding external script-->
+    
+
+    <!-- Adding external style-->
+    
+
+    <!-- Adding scripts-->
+    
+
+    <!-- Adding style-->
+    
+
+    <!-- Adding overlay script-->
+    
+
+    <!-- Adding overlay style-->
+    
+
+
+    <title>
+      robot.js
+    </title>
+
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/third-party/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/third-party/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/reset.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
+    
+    <svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="display:none">
+    <defs>
+        <symbol id="copy-icon" viewbox="0 0 488.3 488.3">
+            <g>
+                <path
+                    d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z" />
+                <path
+                    d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z" />
+            </g>
+        </symbol>
+        <symbol id='search-icon' viewBox="0 0 512 512">
+            <g>
+                <g>
+                    <path
+                        d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474    c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323    c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848    S326.847,409.323,225.474,409.323z" />
+                </g>
+            </g>
+            <g>
+                <g>
+                    <path
+                        d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328    c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z" />
+                </g>
+            </g>
+        </symbol>
+        <symbol id="down-icon" viewBox="0 0 16 16">
+            <path 
+                fill-rule="evenodd" 
+                clip-rule="evenodd" 
+                d="M12.7803 6.21967C13.0732 6.51256 13.0732 6.98744 12.7803 7.28033L8.53033 11.5303C8.23744 11.8232 7.76256 11.8232 7.46967 11.5303L3.21967 7.28033C2.92678 6.98744 2.92678 6.51256 3.21967 6.21967C3.51256 5.92678 3.98744 5.92678 4.28033 6.21967L8 9.93934L11.7197 6.21967C12.0126 5.92678 12.4874 5.92678 12.7803 6.21967Z"
+            >
+            </path>
+        </symbol>
+    </defs>
+</svg>
+  </head>
+
+  <body>
+
+    <nav class="navbar" id="navbar">
+      <div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">Home</h2></a></div><div class="search-box" id="search-box"><div class="search-box-input-container"><input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" /><svg class="search-icon" alt="search-icon"><use xlink:href="#search-icon"></use></svg></div><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-main-content" id="sidebar-main-content"><div class="accordion collapsed" id="1977644" > <h3 class="accordion-heading">Global<svg><use xlink:href="#down-icon"></use></svg></h3><ul class="accordion-content"><li class="accordion-list" id=""><a href="global.html#disableUserDetection">disableUserDetection</a></li><li class="accordion-list" id=""><a href="global.html#enableUserDetection">enableUserDetection</a></li><li class="accordion-list" id=""><a href="global.html#follow">follow</a></li><li class="accordion-list" id=""><a href="global.html#getGotoStatus">getGotoStatus</a></li><li class="accordion-list" id=""><a href="global.html#getId">getId</a></li><li class="accordion-list" id=""><a href="global.html#getLocations">getLocations</a></li><li class="accordion-list" id=""><a href="global.html#getPose">getPose</a></li><li class="accordion-list" id=""><a href="global.html#getUserDetectionStatus">getUserDetectionStatus</a></li><li class="accordion-list" id=""><a href="global.html#GOTO_STATUS">GOTO_STATUS</a></li><li class="accordion-list" id=""><a href="global.html#gotoLocation">gotoLocation</a></li><li class="accordion-list" id=""><a href="global.html#gotoPose">gotoPose</a></li><li class="accordion-list" id=""><a href="global.html#move">move</a></li><li class="accordion-list" id=""><a href="global.html">Pose</a></li><li class="accordion-list" id=""><a href="global.html#speak">speak</a></li><li class="accordion-list" id=""><a href="global.html#stop">stop</a></li><li class="accordion-list" id=""><a href="global.html#tilt">tilt</a></li><li class="accordion-list" id=""><a href="global.html#turn">turn</a></li><li class="accordion-list" id=""><a href="global.html#USER_DETECTION_STATUS">USER_DETECTION_STATUS</a></li></ul> </div></div>
+      
+
+    </nav>
+    <div class="navbar-ham" id="navbar-ham">
+      <div>
+        <div class="first"></div>
+        <div class="second"></div>
+        <div class="third"></div>
+      </div>
+    </div>
+
+    <div id="main" class="main-content">
+      
+      <h1 id='page-title' class="page-title">
+        robot.js
+      </h1>
+      
+
+      
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// https://devhints.io/jsdoc
+
+const MINIMUM_WAIT = 500 // minimum waiting period between joystick commands [msec].
+
+/**
+ * Robot pose. The coordinate system is defined as follows:
+ * The X-axis points in the direction in front of the Home Base, the Y-axis points left, and Z-axis points up in a right-hand coordinate system. The Yaw angle is 0 degrees when the robot is sitting on the Home Base.
+ * @static
+ * @since v1.1.0
+ * @typedef {Object} Pose
+ * @property {Number} x - Position along the X-axis.
+ * @property {Number} y - Position along the Y-axis.
+ * @property {Number} yaw - Orientation around the Z-axis.
+ */
+
+/**
+ * Enum of Goto Status values.
+ * @static
+ * @readonly
+ * @since v1.1.0
+ * @enum {String}
+ * @property {String} START Robot starts going to the location.
+ * @property {String} CALCULATING Robot is calculating the path to the location.
+ * @property {String} GOING Robot is going to the location.
+ * @property {String} COMPLETE Robot has successfully arrived at the location.
+ * @property {String} ABORTED Robot is unable to go to the location and has aborted the process.
+ * @property {String} RELOCALIZING Robot has lost its position and/or orientation in the map and is attempting to re-localize itself. 
+ */
+const GOTO_STATUS = Object.freeze({
+  START: 'start', 
+  CALCULATING: 'calculating', 
+  GOING: 'going', 
+  COMPLETE: 'complete', 
+  ABORTED: 'abort', 
+  RELOCALIZING: 'reposing',
+})
+
+/**
+ * Enum of User Detection Status values.
+ * @static
+ * @readonly
+ * @since v1.1.0
+ * @enum {String}
+ * @property {String} IDLE Robot idling and is passively scanning for users within its field of view.
+ * @property {String} DETECTED A person has been detected.
+ * @property {String} LOST A person that was previously detected has been lost.
+ */
+const USER_DETECTION_STATUS = Object.freeze({
+  IDLE: 'idle', 
+  DETECTED: 'detected', 
+  LOST: 'lost', 
+  UNKNOWN: 'unknown',
+})
+
+/**
+ * Asynchronous sleep function.
+ * @private
+ * @since v1.1.0
+ * @param {Number} ms Sleep time [milliseconds].
+ * @returns {Promise} Promise that will resolve when sleep is complete.
+ */
+const sleep = (ms) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Get device ID.
+ * @static
+ * @since v1.1.0
+ * @returns {String} Unique device ID
+ * @example
+ * const id = getId(); // return the device's ID
+ */
+const getId = () => {
+  let id = 'mockup'
+  if (typeof connect !== 'undefined') {
+    id = connect.getId()
+  } else {
+    console.log(`[Connect] Robot ID: ${id}`)
+  }
+
+  return id
+}
+
+/**
+ * Commands the robot to use it's text-to-speech function. Language spoken will depend on the device's language settings.
+ * @static
+ * @since v1.1.0
+ * @param {String} utterance Text that is to be spoken.
+ * @example 
+ * speak('Hello world'); // command the robot to say "Hello world"
+ */
+const speak = (utterance) => {
+  if (typeof connect !== 'undefined') {
+    connect.speak(utterance)
+  } else {
+    console.log(`[Connect] Speak: ${utterance}`)
+  }
+}
+
+/**
+ * Turns the robot by a predefined angle.
+ * @static
+ * @since v1.1.0
+ * @param {Number} angle Rotation angle; where positive (+) is counter-clockwise and negative (-) is clockwise [-180, +180].
+ * @example
+ * turn(+90); // turn 90 degrees to the left
+ * turn(-90); // turn 90 degrees to the right
+ */
+const turn = (angle) => {
+  if (typeof connect !== 'undefined') {
+    connect.turn(angle, 1.0)
+  } else {
+    console.log(`[Connect] Turn by: ${angle}`)
+  }
+}
+
+/**
+ * Tilts the screen of the robot by a predefined angle.
+ * @static
+ * @since v1.1.0
+ * @param {Number} angle Tilt angle; where positive (+) tilts the screen upwards and negative (-) tilts the screen downwards [-25, +55].
+ * @example
+ * tilt(+55); // tilt the screen all the way up
+ * tilt(-25); // tilt the screen all the way down
+ */
+const tilt = (angle) => {
+  if (typeof connect !== 'undefined') {
+    connect.tilt(angle, 1.0, false)
+  } else {
+    console.log(`[Connect] Tilt by: ${angle}`)
+  }
+}
+
+/**
+ * Follows the person standing in front of it while maintaining a fixed position.
+ * @static
+ * @since v1.1.0
+ * @example
+ * follow(); // Commands the robot to start following any person standing in front of it
+ */
+const follow = () => {
+  if (typeof connect !== 'undefined') {
+    connect.follow()
+  } else {
+    console.log('[Connect] Follow')
+  }
+}
+
+/**
+ * Sends a single joystick command to the robot. Commands must be continuously sent, otherwise the robot will stop moving after a 500 millisecond timeout.
+ * @private
+ * @since v1.1.0
+ * @param {Number} trans Translational velocity; where -1 is full-speed backwards and +1 is full-speed forwards [-1, +1].
+ * @param {Number} rot Rotational velocity; where positive (+) is counter-clockwise and negative (-) is clockwise [-1, +1].
+ */
+const joystick = (trans, rot) => {
+  if (typeof connect !== 'undefined') {
+    connect.joystick(trans, rot)
+  } else {
+    console.log(`[Connect] Joystick: (${trans}, ${rot})`)
+  }
+}
+
+/**
+ * Continuously sends joystick commands for a predefined period.
+ * @static
+ * @since v1.1.0
+ * @param {Number} trans Translational velocity; where -1 is full-speed backwards and +1 is full-speed forwards [-1, +1].
+ * @param {Number} rot Rotational velocity; where positive (+) is counter-clockwise and negative (-) is clockwise [-1, +1].
+ * @param {Number} period Period of time in which the robot is commanded to move.
+ * @example
+ * move(1.0, 0, 1); // moves the robot full-speed forward for 1 second
+ * move(-1.0, 0, 1); // moves the robot full-speed backward for 1 second
+ * move(0, 1.0, 1); // rotates the robot full-speed counter-clockwise for 1 second
+ * move(0, -1.0, 1); // rotates the robot full-speed clockwise for 1 second
+ */
+const move = async (trans, rot, period) => {
+  const iter = Math.round(period / MINIMUM_WAIT)
+  for (let i = 0; i &lt; iter; i++) {
+    joystick(trans, rot)
+    await sleep(MINIMUM_WAIT)
+  }
+} 
+
+/**
+ * Commands the robot to stop moving.
+ * @static
+ * @since v1.1.0
+ * @example
+ * stop(); // stops the robot from moving and/or following
+ */
+const stop = () => {
+  if (typeof connect !== 'undefined') {
+    connect.stop()
+  } else {
+    console.log('[Connect] Stop')
+  }
+}
+
+/**
+ * Gets the name of all predefined locations.
+ * @static
+ * @since v1.1.0
+ * @returns {String[]} An array of of location names.
+ * @example
+ * const locations = getLocations();
+ * 
+ * locations.forEach((locationName) => {
+ *  console.log(locationName)
+ * });
+ */
+const getLocations = () => {
+  let locations = []
+  if (typeof connect !== 'undefined') {
+    locations = JSON.parse(connect.getLocations())
+  } else {
+    console.log('[Connect] Locations:', locations)
+  }
+
+  return locations
+}
+
+/**
+ * Sends the robot to a predefined location.
+ * @static
+ * @since v1.1.0
+ * @param {String} locationName Name of the location, as spelled out in the `Locations` list.
+ * @example
+ * gotoLocation('home base'); // sends the robot to the Home Base
+ */
+const gotoLocation = (locationName) => {
+  if (typeof connect !== 'undefined') {
+    connect.gotoLocation(locationName)
+  } else {
+    console.log(`[Connect] Goto: ${locationName}`)
+  }
+}
+
+/**
+ * Gets the current pose of the robot, with respect to the Home Base.
+ * @static
+ * @since v1.1.0
+ * @returns {Pose} The robot's current {@link Pose}
+ * @example
+ * const pose = getPose(); // get the current pose of the robot
+ */
+const getPose = () => {
+  let pose = { x: 0, y: 0, yaw: 0}
+  if (typeof connect !== 'undefined') {
+    pose = JSON.parse(connect.getPose())
+  } else {
+    console.log(`[Connect] Pose: (${pose.x}, ${pose.y}) | Yaw: ${pose.yaw}`)
+  }
+
+  return pose
+}
+
+/**
+ * Sets the robot's pose, with respect to the Home Base.
+ * @static
+ * @since v1.1.0
+ * @param {Number} x Position along the X-axis, with respect to the Home Base [m].
+ * @param {Number} y Position along the Y-axis, with respect to the Home Base [m].
+ * @param {Number} yaw Orientiation around the Z-axis, with respect to the Home Base [rad].
+ * @example
+ * gotoPose(1.0, 0.0, 1.57); // sends the robot to 1.0 m in front of the Home Base, rotated 90 degrees counter-clockwise with respect to the Home Base position
+ */
+const gotoPose = (x, y, yaw) => {
+  if (typeof connect !== 'undefined') {
+    connect.gotoPose(x, y, yaw)
+  } else {
+    console.log(`[Connect] Goto: (${x}, ${y}, ${yaw})`)
+  }
+}
+
+/**
+ * Gets the current 'goto' status.
+ * @static
+ * @since v1.1.0
+ * @returns {String} Goto status, see {@link GOTO_STATUS}
+ * @example
+ * const status = getGotoStatus(); // get the current goto status
+ */
+const getGotoStatus = () => {
+  let status = null
+  if (typeof connect !== 'undefined') {
+    status = connect.getGotoStatus()
+  } else {
+    console.log(`[Connect] Goto Status: ${status}`)
+  }
+
+  return status
+}
+
+/**
+ * Enable user detection.
+ * Connect-Android app must be in Kiosk mode and 'Settings' permission must be enabled.
+ * @static
+ * @since v1.1.0
+ * @example
+ * enableUserDetection(); // initialize user detection
+ */
+const enableUserDetection = () => {
+  if (typeof connect !== 'undefined') {
+    status = connect.enableUserDetection()
+  } else {
+    console.log('[Connect] Enable user detection')
+  }
+}
+
+/**
+ * Disable user detection.
+ * Connect-Android app must be in Kiosk mode and 'Settings' permission must be enabled.
+ * @static
+ * @since v1.1.0
+ * @example
+ * disableUserDetection(); // disable user detection
+ */
+const disableUserDetection = () => {
+  if (typeof connect !== 'undefined') {
+    status = connect.disableUserDetection()
+  } else {
+    console.log('[Connect] Disable user detection')
+  }
+}
+
+/**
+ * Gets the user detection status.
+ * @static
+ * @since v1.1.0
+ * @returns {String} User-detection status, see {@link USER_DETECTION_STATUS}.
+ * @example
+ * const status = getUserDetectionStatus(); // get the current user detection status
+ */
+const getUserDetectionStatus = () => {
+  let status = null
+  if (typeof connect !== 'undefined') {
+    status = connect.getUserDetectionStatus()
+  } else {
+    console.log(`[Connect] User Detection Status: ${status}`)
+  }
+
+  return status
+}
+
+export {
+  getId,
+  speak,
+  turn,
+  tilt,
+  follow,
+  move,
+  stop,
+  getLocations,
+  gotoLocation,
+  getPose,
+  gotoPose,
+  getGotoStatus,
+  enableUserDetection,
+  disableUserDetection,
+  getUserDetectionStatus,
+  GOTO_STATUS,
+  USER_DETECTION_STATUS,
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    </div>
+
+    <footer class="footer" id="footer">
+      
+    </footer>
+
+    <script src="scripts/third-party/prettify.js"></script>
+    <script src="scripts/third-party/lang-css.js"></script>
+    <script type="text/javascript" src="scripts/misc.js"></script>
+
+    <script>prettyPrint();</script>
+    <script src="scripts/linenumber.js"></script>
+    <script src="scripts/fix-code-block.js"></script>
+    <script src="scripts/fix-navbar.js"></script>
+    
+      <script src="scripts/search.js"></script>
+      <script src="scripts/third-party/fuse.js"></script>
+      <script>
+        var list = [{"title":"disableUserDetection","link":"<a href=\"global.html#disableUserDetection\">disableUserDetection</a>"},{"title":"enableUserDetection","link":"<a href=\"global.html#enableUserDetection\">enableUserDetection</a>"},{"title":"follow","link":"<a href=\"global.html#follow\">follow</a>"},{"title":"getGotoStatus","link":"<a href=\"global.html#getGotoStatus\">getGotoStatus</a>"},{"title":"getId","link":"<a href=\"global.html#getId\">getId</a>"},{"title":"getLocations","link":"<a href=\"global.html#getLocations\">getLocations</a>"},{"title":"getPose","link":"<a href=\"global.html#getPose\">getPose</a>"},{"title":"getUserDetectionStatus","link":"<a href=\"global.html#getUserDetectionStatus\">getUserDetectionStatus</a>"},{"title":"GOTO_STATUS","link":"<a href=\"global.html#GOTO_STATUS\">GOTO_STATUS</a>"},{"title":"gotoLocation","link":"<a href=\"global.html#gotoLocation\">gotoLocation</a>"},{"title":"gotoPose","link":"<a href=\"global.html#gotoPose\">gotoPose</a>"},{"title":"move","link":"<a href=\"global.html#move\">move</a>"},{"title":"Pose","link":"<a href=\"global.html\">Pose</a>"},{"title":"speak","link":"<a href=\"global.html#speak\">speak</a>"},{"title":"stop","link":"<a href=\"global.html#stop\">stop</a>"},{"title":"tilt","link":"<a href=\"global.html#tilt\">tilt</a>"},{"title":"turn","link":"<a href=\"global.html#turn\">turn</a>"},{"title":"USER_DETECTION_STATUS","link":"<a href=\"global.html#USER_DETECTION_STATUS\">USER_DETECTION_STATUS</a>"}];
+        var options = 
+          setupSearch(list, options)
+      </script>
+    
+
+    
+
+    
+
+    
+
+    
+
+
+  </body>
+
+</html>
