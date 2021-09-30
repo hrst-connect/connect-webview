@@ -2,7 +2,7 @@ const locationList = document.querySelector('#location-list');
 
 // Create a list of locations  
 window.addEventListener('load', () => {
-  const locations = robot.getLocations()
+  const locations = connect.getLocations()
   
   locations.forEach((location) => {
     const option = document.createElement('option');
