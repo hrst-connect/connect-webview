@@ -1,22 +1,20 @@
-import * as robot from '../../../lib/robot.js'
-
 let turnState = false;
 let tiltState = false;
 
 document.querySelector('#button-turn').addEventListener('click', (event) => {
   if (turnState) {
-    robot.turn(+90); // [degrees]
+    connect.turn(+90, 1.0); // [degrees]
   } else {
-    robot.turn(-90); // [degrees]
+    connect.turn(-90, 1.0); // [degrees]
   }
   turnState = !turnState; // toggle state
 });
 
 document.querySelector('#button-tilt').addEventListener('click', (event) => {
   if (tiltState) {
-    robot.tilt(+55); // [degrees]
+    connect.tilt(+55, 1.0, false) // [degrees]
   } else {
-    robot.tilt(-25); // [degrees]
+    connect.tilt(-25, 1.0, false); // [degrees]
   }
   tiltState = !tiltState; // toggle state
 });

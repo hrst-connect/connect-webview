@@ -1,5 +1,3 @@
-import * as robot from '../../../lib/robot.js'
-
 const locationList = document.querySelector('#location-list');
 
 // Create a list of locations  
@@ -16,5 +14,5 @@ window.addEventListener('load', () => {
 // Goto location listener
 locationList.addEventListener('change', (event) => {
   const selectedLocation = event.target.value;
-  robot.gotoLocation(selectedLocation);
+  connect.gotoLocation(selectedLocation);
 });
