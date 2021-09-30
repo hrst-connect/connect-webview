@@ -1,4 +1,4 @@
-import * as robot from '../lib/robot.js'
+import * as robot from '../../lib/robot.js'
 
 let turnState = false;
 let tiltState = false;

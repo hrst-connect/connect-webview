@@ -18,7 +18,7 @@ Then you can use it like this:
 robot.speak('Hello world');
 ```
 
-## Generating Documentation
+## Generate Documentation
 ```shell
 npm run docs
 ```
