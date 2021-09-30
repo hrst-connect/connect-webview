@@ -6,7 +6,7 @@ import './css/style.css'
 
 import Wave from '@foobar404/wave'
 
-import robot from '../../../lib/robot'
+import * as robot from '../../../lib/robot'
 import sleep from '../../../lib/utils'
 
 const text = document.querySelector('#text')
@@ -126,7 +126,7 @@ window.onload = async () => {
     await sleep(3000)
     status = robot.getUserDetectionStatus()
 
-    if (status === 'detected') {
+    if (status === robot.USER_DETECTION_STATUS.DETECTED) {
       if (!firstFollow) { // prevent starting the interaction multiple times
         startInteraction()
         firstFollow = true

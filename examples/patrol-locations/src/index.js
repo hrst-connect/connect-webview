@@ -4,7 +4,7 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/style.css'
 
-import robot from '../../../lib/robot'
+import * as robot from '../../../lib/robot'
 import sleep from '../../../lib/utils'
 
 const music = new Audio('https://mp3l.jamendo.com/?trackid=1214935&format=mp31')
@@ -50,7 +50,7 @@ const gotoLocation = async (locationName) => {
 
   // Poll for goto-complete status
   let watchdog = 3
-  while (robot.getGotoStatus() !== 'complete') {
+  while (robot.getGotoStatus() !== robot.GOTO_STATUS.COMPLETE) {
     await sleep(1000)
     
     if (watchdog-- < 0) {

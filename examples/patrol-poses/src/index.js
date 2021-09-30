@@ -4,7 +4,7 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/style.css'
 
-import robot from '../../../lib/robot'
+import * as robot from '../../../lib/robot'
 import sleep from '../../../lib/utils'
 
 import poses from './data/poses.js'
@@ -52,7 +52,7 @@ const gotoPose = async (x, y, yaw) => {
 
   // Poll for goto-complete status
   let watchdog = 3
-  while (robot.getGotoStatus() !== 'complete') {
+  while (robot.getGotoStatus() !== robot.GOTO_STATUS.COMPLETE) {
     await sleep(1000)
     
     if (watchdog-- < 0) {
