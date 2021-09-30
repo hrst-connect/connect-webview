@@ -1,5 +1,3 @@
-[![Documentation Status](https://readthedocs.org/projects/connect-webview/badge/?version=latest)](https://connect-webview.readthedocs.io/en/latest/?badge=latest)
-
 # Connect Webview
 This is an example of how to build a page for Connect.
 
