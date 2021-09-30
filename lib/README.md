@@ -1,5 +1,5 @@
 # Connect WebView JavaScript Library
-A library of commonly used functions that are used in the examples.
+A library of commonly used functions that are used in some of the examples.
 
 ## Setup
 Install dependencies:
