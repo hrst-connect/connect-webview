@@ -1,5 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fc4431ab-43b0-4483-89a5-5bab8f08ce1f/deploy-status)](https://app.netlify.com/sites/connect-webview-patrol-poses/deploys)
-
 # Connect WebView Patrol Positions Example
 A WebView that displays the current pose of the robot (with respect to the Home Base), for details, see references below. The robot will patrol a predefined list of poses.
 

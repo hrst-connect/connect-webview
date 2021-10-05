@@ -1,5 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3707193a-dcc2-41ba-a238-acc41e4070dc/deploy-status)](https://app.netlify.com/sites/connect-webview-basics/deploys)
-
 # Basics Example
 This example is built using vanilla HTML, CSS, and JavaScript.
 

@@ -1,5 +1,3 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2105db07-fc3b-463c-af65-72761cbab734/deploy-status)](https://app.netlify.com/sites/connect-webview-welcome/deploys)
-
 # Connect WebView Welcome Example
 A WebView that runs a randomly selected task when a user approaches it.
 
