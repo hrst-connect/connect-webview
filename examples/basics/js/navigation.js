@@ -2,7 +2,7 @@ const locationList = document.querySelector('#location-list');
 
 // Create a list of locations  
 window.addEventListener('load', () => {
-  const locations = connect.getLocations()
+  const locations = JSON.parse(connect.getLocations())
   
   locations.forEach((location) => {
     const option = document.createElement('option');
