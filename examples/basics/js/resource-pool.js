@@ -1,4 +1,4 @@
-const RESOURCE_POOL_ID = 'RESOURCE_POOL_ID'; // insert your resource pool ID here
+const RESOURCE_POOL_ID = 'WYgcE672wZB4cr9KuoAD'; // insert your resource pool ID here
 
 // Resource pool status listener
 function onResourcePoolStatusChange(availableOperators) {
