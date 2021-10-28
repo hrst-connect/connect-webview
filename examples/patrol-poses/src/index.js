@@ -30,7 +30,7 @@ const showPose = () => {
   document.querySelector('#pose').innerHTML = `
     <p>X: ${pose.x.toFixed(2)} m</p>
     <p>Y: ${pose.y.toFixed(2)} m</p>
-    <p>Yaw: ${Math.round(pose.yaw * 180 / Math.PI)}°</p>
+    <p>Yaw: ${Math.round(pose.yaw)}°</p>
   `
 }
 
@@ -47,16 +47,21 @@ const goHome = () => {
  * @param {Number} y Position in the Y-coordinate frame [m]
  * @param {Number} yaw Yaw angle [rad]
  */
-const gotoPose = async (x, y, yaw) => {
-  robot.gotoPose(x, y, yaw)
+const gotoPose = async (x, y, yaw, tilt) => {
+  robot.gotoPose(x, y, yaw, tilt)
 
   // Poll for goto-complete status
-  let watchdog = 3
+  let watchdog = 5 // initialize watchdog
   while (robot.getGotoStatus() !== robot.GOTO_STATUS.COMPLETE) {
     await sleep(1000)
     
-    if (watchdog-- < 0) {
-      break
+    if (robot.getGotoStatus() === robot.GOTO_STATUS.GOING) {
+      watchdog = 5 // reset watchdog
+    } else {
+      if (watchdog-- < 0) {
+        alert('Watchdog timer hit')
+        break
+      }
     }
   }
 }
