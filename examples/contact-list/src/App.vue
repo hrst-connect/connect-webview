@@ -1,11 +1,7 @@
 <template>
   <div class="container-fluid">
     <Menu />
-
-    <!-- Content -->
-    <Home />
-    <Directory />
-
+    <router-view />
     <Footer />
   </div>
 </template>
@@ -13,15 +9,10 @@
 <script>
 import Menu from '@/components/menu'
 import Footer from '@/components/footer'
-import Home from '@/components/home'
-import Directory from '@/components/directory'
 
 export default {
   name: 'App',
-  components: { Menu, Footer, Home, Directory },
-  setup() {
-    return { }
-  }
+  components: { Menu, Footer },
 }
 </script>
 

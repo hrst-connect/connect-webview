@@ -9,14 +9,25 @@
         </div>
       </div>
       <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-danger btn-lg" @click="onMenu">お声をかけてください</button>
+        <button type="button" class="btn btn-danger btn-lg fs-3 fw-bold" @click="onClick">お声をかけてください</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'ContentHome',
+  setup() {
+    const router = useRouter()
+
+    const onClick = () => {
+      router.push({ name: 'directory' })
+    }
+
+    return { onClick }
+  }
 }
 </script>
