@@ -57,7 +57,7 @@ export default {
     const callSales = () => {
       if (typeof connect !== 'undefined') {
         // eslint-disable-next-line
-        connect.addResourcePoolStatusListener('onResourcePoolStatusChange', WYgcE672wZB4cr9KuoAD);
+        connect.addResourcePoolStatusListener('onResourcePoolStatusChange', 'WYgcE672wZB4cr9KuoAD');
       } else {
         console.log('Calling...')
       }
