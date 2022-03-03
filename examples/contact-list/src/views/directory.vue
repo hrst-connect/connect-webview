@@ -9,29 +9,33 @@
       </thead>
       <tbody class="fs-3">
         <tr>
+          <!-- Sales -->
           <td class="text-center">営業部</td>
           <td>
             <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">営業</button>
           </td>
         </tr>
         <tr>
+          <!-- Management -->
           <td class="text-center">管理部</td>
           <td>
-            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">総務・庶務</button>
-            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">経理</button>
+            <button type="button" class="btn btn-danger fs-5 m-1" @click="callMgmt">総務・庶務</button>
+            <button type="button" class="btn btn-danger fs-5 m-1" @click="callMgmt">経理</button>
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
+          President
           <td class="text-center">社長室</td>
           <td>
-            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">秘書</button>
+            <button type="button" class="btn btn-danger fs-5 m-1">秘書</button>
           </td>
-        </tr>
+        </tr> -->
         <tr>
+          <!-- Engineering -->
           <td class="text-center">技術部</td>
           <td>
-            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">パートナー開発技術</button>
-            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">ソフトウェア開発</button>
+            <button type="button" class="btn btn-danger fs-5 m-1" @click="callEng">パートナー開発技術</button>
+            <button type="button" class="btn btn-danger fs-5 m-1" @click="callEng">ソフトウェア開発</button>
           </td>
         </tr>
       </tbody>
@@ -57,13 +61,31 @@ export default {
     const callSales = () => {
       if (typeof connect !== 'undefined') {
         // eslint-disable-next-line
-        connect.call('WYgcE672wZB4cr9KuoAD');
+        connect.call('AOtxVXBgQ8J9B7Jg8mva');
       } else {
-        console.log('Calling...')
+        console.log('Calling sales...')
       }
     }
 
-    return { callSales }
+    const callMgmt = () => {
+      if (typeof connect !== 'undefined') {
+        // eslint-disable-next-line
+        connect.call('FJgBQYiEwJCGsht5dB2W');
+      } else {
+        console.log('Calling sales...')
+      }
+    }
+
+    const callEng = () => {
+      if (typeof connect !== 'undefined') {
+        // eslint-disable-next-line
+        connect.call('yAQvwPIf4gPy5V3N3CB8');
+      } else {
+        console.log('Calling engineering...')
+      }
+    }
+
+    return { callSales, callMgmt, callEng }
   }
 }
 </script>

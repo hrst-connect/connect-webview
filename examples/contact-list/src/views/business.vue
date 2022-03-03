@@ -7,7 +7,7 @@
       <p class="fs-5">GRP: ゼネラル・ロボティクス・プロデューザー</p>
       <p>No.1・Only 1のロボットカンパニーを常に目指すハピロボは、ロボットのバリューチェーンをトータルにカバーした GRP (ゼネラル・ロボティクス・プロデューザー)として、さまざまなチャレンジに取り組んでいます。</p>
       <figure class="figure">
-        <img class="img-fluid" src="@/assets/hapi-robo-grp.png" loading="lazy">
+        <img class="img-fluid" src="@/assets/hapi-robo-grp.jpg" loading="lazy">
       </figure>
     </div>
   </div>
