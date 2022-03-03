@@ -11,27 +11,27 @@
         <tr>
           <td class="text-center">営業部</td>
           <td>
-            <button type="button" class="btn btn-danger fs-5 m-1" data-bs-toggle="modal" data-bs-target="#connect-coe">営業</button>
+            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">営業</button>
           </td>
         </tr>
         <tr>
           <td class="text-center">管理部</td>
           <td>
-            <button type="button" class="btn btn-danger fs-5 m-1" data-bs-toggle="modal" data-bs-target="#connect-coe">総務・庶務</button>
-            <button type="button" class="btn btn-danger fs-5 m-1" data-bs-toggle="modal" data-bs-target="#connect-coe">経理</button>
+            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">総務・庶務</button>
+            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">経理</button>
           </td>
         </tr>
         <tr>
           <td class="text-center">社長室</td>
           <td>
-            <button type="button" class="btn btn-danger fs-5 m-1" data-bs-toggle="modal" data-bs-target="#connect-coe">秘書</button>
+            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">秘書</button>
           </td>
         </tr>
         <tr>
           <td class="text-center">技術部</td>
           <td>
-            <button type="button" class="btn btn-danger fs-5 m-1" data-bs-toggle="modal" data-bs-target="#connect-coe">パートナー開発技術</button>
-            <button type="button" class="btn btn-danger fs-5 m-1" data-bs-toggle="modal" data-bs-target="#connect-coe">ソフトウェア開発</button>
+            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">パートナー開発技術</button>
+            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">ソフトウェア開発</button>
           </td>
         </tr>
       </tbody>
@@ -54,6 +54,16 @@
 export default {
   name: 'ContentDirectory',
   setup() {
+    const callSales = () => {
+      if (typeof connect !== 'undefined') {
+        // eslint-disable-next-line
+        connect.addResourcePoolStatusListener('onResourcePoolStatusChange', WYgcE672wZB4cr9KuoAD);
+      } else {
+        console.log('Calling...')
+      }
+    }
+
+    return { callSales }
   }
 }
 </script>

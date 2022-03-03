@@ -2,17 +2,15 @@
   <div class="container-fluid">
     <Menu />
     <router-view />
-    <Footer />
   </div>
 </template>
 
 <script>
 import Menu from '@/components/menu'
-import Footer from '@/components/footer'
 
 export default {
   name: 'App',
-  components: { Menu, Footer },
+  components: { Menu },
 }
 </script>
 
