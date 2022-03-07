@@ -14,7 +14,7 @@
       </div>
       <div class="d-flex justify-content-center">
         <img class="img-fluid m-2" src="@/assets/shooting_stars.jpg" width="400" loading="lazy">
-        <img class="img-fluid m-2" src="@/assets/tomita.png" width="400" loading="lazy">
+        <img class="img-fluid m-2" src="@/assets/tomita.jpg" width="400" loading="lazy">
       </div>
     </div>
   </div>

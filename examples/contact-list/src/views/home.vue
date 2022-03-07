@@ -10,7 +10,7 @@
         <button type="button" class="btn btn-danger btn-lg fs-1 fw-bold" @click="onClick">お声をかけてください</button>
       </div>
       <div class="d-flex justify-content-center">
-        <img class="img-fluid" src="@/assets/hrst_logo_2.png" width="400" loading="lazy">
+        <img class="img-fluid" src="@/assets/hrst_mascot.jpg" width="400" loading="lazy">
       </div>
     </div>
   </div>
