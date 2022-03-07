@@ -1,41 +1,32 @@
 <template>
   <div class="d-flex justify-content-center align-items-center" style="height: 90vh">
-    <table class="table table-borderless align-middle" style="width: 38em;">
-      <thead class="fs-2">
+    <table class="table table-borderless align-middle" style="width: 60em;">
+      <thead class="fs-1">
         <tr>
           <th>Division</th>
           <th>Department</th>
         </tr>
       </thead>
-      <tbody class="fs-3">
+      <tbody class="fs-1">
         <tr>
-          <!-- Sales -->
           <td class="text-center">営業部</td>
           <td>
-            <button type="button" class="btn btn-danger fs-5 m-1" @click="callSales">営業</button>
+            <button type="button" class="btn btn-danger fs-1 m-2" @click="callCoe('sales-1')">営業1課</button>
+            <button type="button" class="btn btn-danger fs-1 m-2" @click="callCoe('sales-2')">営業2課</button>
           </td>
         </tr>
         <tr>
-          <!-- Management -->
           <td class="text-center">管理部</td>
           <td>
-            <button type="button" class="btn btn-danger fs-5 m-1" @click="callMgmt">総務・庶務</button>
-            <button type="button" class="btn btn-danger fs-5 m-1" @click="callMgmt">経理</button>
+            <button type="button" class="btn btn-danger fs-1 m-2" @click="callCoe('accounting')">経理</button>
+            <button type="button" class="btn btn-danger fs-1 m-2" @click="callCoe('general-affairs')">総務・庶務</button>
           </td>
         </tr>
-        <!-- <tr>
-          President
-          <td class="text-center">社長室</td>
-          <td>
-            <button type="button" class="btn btn-danger fs-5 m-1">秘書</button>
-          </td>
-        </tr> -->
         <tr>
-          <!-- Engineering -->
           <td class="text-center">技術部</td>
           <td>
-            <button type="button" class="btn btn-danger fs-5 m-1" @click="callEng">パートナー開発技術</button>
-            <button type="button" class="btn btn-danger fs-5 m-1" @click="callEng">ソフトウェア開発</button>
+            <button type="button" class="btn btn-danger fs-1 m-2" @click="callCoe('partner-development')">パートナー開発技術</button>
+            <button type="button" class="btn btn-danger fs-1 m-2" @click="callCoe('software-development')">ソフトウェア開発</button>
           </td>
         </tr>
       </tbody>
@@ -58,34 +49,37 @@
 export default {
   name: 'ContentDirectory',
   setup() {
-    const callSales = () => {
+    /* eslint-disable */
+    const callCoe = (department) => {
       if (typeof connect !== 'undefined') {
-        // eslint-disable-next-line
-        connect.call('AOtxVXBgQ8J9B7Jg8mva');
+        switch (department) {
+          case 'sales-1':
+            connect.call('vqjRUS8dRqjmxEg4k1uT');
+            break;
+          case 'sales-2':
+            connect.call('dwtoMUO3P0L3SfHNmWmf');
+            break;
+          case 'accounting':
+            connect.call('s1GLvoZNHJrwnqL1P8Q3');
+            break;
+          case 'general-affairs':
+            connect.call('266Jhp0B804IETqnkfmC');
+            break;
+          case 'partner-development':
+            connect.call('4mdEySwPuIWYioqIUCQp');
+            break;
+          case 'software-development':
+            connect.call('ClUrT9yDABPUfqJSlhYW');
+            break;
+          default:
+            break;
+        }
       } else {
-        console.log('Calling sales...')
+        console.log(`Calling ${department}`)
       }
     }
 
-    const callMgmt = () => {
-      if (typeof connect !== 'undefined') {
-        // eslint-disable-next-line
-        connect.call('FJgBQYiEwJCGsht5dB2W');
-      } else {
-        console.log('Calling sales...')
-      }
-    }
-
-    const callEng = () => {
-      if (typeof connect !== 'undefined') {
-        // eslint-disable-next-line
-        connect.call('yAQvwPIf4gPy5V3N3CB8');
-      } else {
-        console.log('Calling engineering...')
-      }
-    }
-
-    return { callSales, callMgmt, callEng }
+    return { callCoe }
   }
 }
 </script>
