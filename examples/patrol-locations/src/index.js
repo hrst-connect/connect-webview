@@ -49,17 +49,17 @@ const gotoLocation = async (locationName) => {
   robot.gotoLocation(locationName)
 
   // Poll for goto-complete status
-  let watchdog = 5 // initialize watchdog
-  while (robot.getGotoStatus() !== robot.GOTO_STATUS.COMPLETE) {
+  let isGotoComplete = false
+  while (!isGotoComplete) {
     await sleep(1000)
 
-    if (robot.getGotoStatus() === robot.GOTO_STATUS.GOING) {
-      watchdog = 5 // reset the watchdog
-    } else {
-      if (watchdog-- < 0) {
-        alert('Watchdog timer hit')
+    switch (robot.getGotoStatus()) {
+      case robot.GOTO_STATUS.COMPLETE:
+      case robot.GOTO_STATUS.ABORTED:
+        isGotoComplete = true
         break
-      }
+      default:
+        break
     }
   }
 }
