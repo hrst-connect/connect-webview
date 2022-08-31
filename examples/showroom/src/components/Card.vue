@@ -28,7 +28,7 @@ export default {
 
     const onClick = (data) => {
       gotoLocation(data.locationName)
-      connect.setCallBtn('WYgcE672wZB4cr9KuoAD')
+      connect.setCallBtn('dwtoMUO3P0L3SfHNmWmf')
       connect.showCallBtn()
       connect.toast('Loading')
       window.location.href = data.url // Note: switching webview context should be the last step
