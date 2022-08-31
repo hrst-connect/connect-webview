@@ -23,7 +23,6 @@ export default {
     
     onMounted(() => {
       if (typeof connect !== 'undefined') {
-        connect.hideHomeBtn();
         connect.hideCallBtn();
       }
     })
