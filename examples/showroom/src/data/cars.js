@@ -6,7 +6,7 @@ export default [
     image: require('@/assets/images/alphard.webp'),
     resourcePoolId: 'WYgcE672wZB4cr9KuoAD', // insert resource pool ID here
     locationName: 'alphard',
-    url: 'http://www.toyota.jp/alphard/'
+    url: 'https://toyota.jp/alphard/'
   },
   { 
     id: 2, 
@@ -15,7 +15,7 @@ export default [
     image: require('@/assets/images/harrier.webp'),
     resourcePoolId: 'WYgcE672wZB4cr9KuoAD', // insert resource pool ID here
     locationName: 'harrier',
-    url: 'http://www.toyota.jp/harrier/'
+    url: 'https://toyota.jp/harrier/'
   },
   { 
     id: 3, 
@@ -24,7 +24,7 @@ export default [
     image: require('@/assets/images/noah.webp'),
     resourcePoolId: 'WYgcE672wZB4cr9KuoAD', // insert resource pool ID here
     locationName: 'noah',
-    url: 'http://www.toyota.jp/noah/'
+    url: 'https://toyota.jp/noah/'
   },
   { 
     id: 4, 
@@ -33,7 +33,7 @@ export default [
     image: require('@/assets/images/passo.webp'),
     resourcePoolId: 'WYgcE672wZB4cr9KuoAD', // insert resource pool ID here
     locationName: 'passo',
-    url: 'http://www.toyota.jp/passo/'
+    url: 'https://toyota.jp/passo/'
   },
   { 
     id: 5, 
@@ -42,7 +42,7 @@ export default [
     image: require('@/assets/images/rav4phv.jpg'),
     resourcePoolId: 'WYgcE672wZB4cr9KuoAD', // insert resource pool ID here
     locationName: 'rav4phv',
-    url: 'http://www.toyota.jp/rav4phv/'
+    url: 'https://toyota.jp/rav4phv/'
   },
   { 
     id: 6, 
@@ -51,7 +51,7 @@ export default [
     image: require('@/assets/images/vellfire.webp'),
     resourcePoolId: 'WYgcE672wZB4cr9KuoAD', // insert resource pool ID here
     locationName: 'vellfire',
-    url: 'http://www.toyota.jp/vellfire/'
+    url: 'https://toyota.jp/vellfire/'
   },
   { 
     id: 7, 
@@ -60,7 +60,7 @@ export default [
     image: require('@/assets/images/voxy.webp'),
     resourcePoolId: 'WYgcE672wZB4cr9KuoAD', // insert resource pool ID here
     locationName: 'voxy',
-    url: 'http://www.toyota.jp/voxy/'
+    url: 'https://toyota.jp/voxy/',
   },
   { 
     id: 8, 
@@ -69,6 +69,6 @@ export default [
     image: require('@/assets/images/yaris.webp'),
     resourcePoolId: 'WYgcE672wZB4cr9KuoAD', // insert resource pool ID here
     locationName: 'yaris',
-    url: 'http://www.toyota.jp/yaris/'
+    url: 'https://toyota.jp/yaris/'
   },
 ]
